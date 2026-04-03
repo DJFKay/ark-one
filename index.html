@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ARK ONE – Der biologische Nullpunkt</title>
+<meta name="description" content="Ark One – Der biologische Nullpunkt. Ein Hard-Science-Fiction-Roman über den letzten Exodus der Menschheit, kosmische Strahlung und die Verteidigung des menschlichen Kerns.">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -16,6 +17,8 @@
     --glow: #5b9fff;
     --warn: #e8a020;
     --danger: #c0392b;
+    --teal: #1a8f7a;
+    --red: #c0392b;
     --text: #c8d8f0;
     --muted: #5a7aa0;
     --bright: #e8f0ff;
@@ -25,438 +28,219 @@
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body {
-    background: var(--void);
-    color: var(--text);
-    font-family: var(--serif);
-    font-size: 16px;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
+  body { background: var(--void); color: var(--text); font-family: var(--serif); font-size: 16px; line-height: 1.7; overflow-x: hidden; }
 
-  /* ── STARS ── */
+  /* STARS */
   .stars {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     pointer-events: none; z-index: 0;
     background:
-      radial-gradient(1px 1px at 10% 20%, rgba(200,216,240,0.6) 0%, transparent 100%),
-      radial-gradient(1px 1px at 30% 60%, rgba(200,216,240,0.4) 0%, transparent 100%),
-      radial-gradient(1px 1px at 50% 15%, rgba(200,216,240,0.7) 0%, transparent 100%),
-      radial-gradient(1px 1px at 70% 80%, rgba(200,216,240,0.3) 0%, transparent 100%),
-      radial-gradient(1px 1px at 85% 35%, rgba(200,216,240,0.5) 0%, transparent 100%),
-      radial-gradient(1px 1px at 20% 85%, rgba(200,216,240,0.4) 0%, transparent 100%),
-      radial-gradient(1px 1px at 60% 50%, rgba(200,216,240,0.6) 0%, transparent 100%),
-      radial-gradient(1px 1px at 92% 70%, rgba(200,216,240,0.3) 0%, transparent 100%),
-      radial-gradient(1px 1px at 45% 90%, rgba(200,216,240,0.5) 0%, transparent 100%),
-      radial-gradient(1px 1px at 78% 12%, rgba(200,216,240,0.7) 0%, transparent 100%),
-      radial-gradient(1px 1px at 5%  45%, rgba(200,216,240,0.4) 0%, transparent 100%),
-      radial-gradient(1px 1px at 38% 30%, rgba(200,216,240,0.3) 0%, transparent 100%),
-      radial-gradient(1px 1px at 65% 68%, rgba(200,216,240,0.5) 0%, transparent 100%),
-      radial-gradient(1px 1px at 88% 55%, rgba(200,216,240,0.6) 0%, transparent 100%),
-      radial-gradient(1px 1px at 55% 78%, rgba(200,216,240,0.4) 0%, transparent 100%);
+      radial-gradient(1px 1px at 8%  18%, rgba(200,216,240,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 22% 55%, rgba(200,216,240,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 38% 12%, rgba(200,216,240,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 54% 72%, rgba(200,216,240,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 67% 33%, rgba(200,216,240,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 79% 88%, rgba(200,216,240,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 91% 22%, rgba(200,216,240,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 14% 80%, rgba(200,216,240,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 47% 44%, rgba(200,216,240,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 83% 61%, rgba(200,216,240,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 29% 95%, rgba(200,216,240,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 61% 8%,  rgba(200,216,240,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 95% 47%, rgba(200,216,240,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 3%  63%, rgba(200,216,240,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 73% 15%, rgba(200,216,240,0.7) 0%, transparent 100%);
   }
 
-  /* ── NAV ── */
+  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 1rem 2.5rem;
-    background: rgba(5,8,16,0.88);
+    background: rgba(5,8,16,0.9);
     border-bottom: 1px solid rgba(30,58,110,0.5);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
   }
-  .nav-logo {
-    font-family: var(--display);
-    font-size: 14px; font-weight: 700;
-    letter-spacing: 0.2em;
-    color: var(--glow);
-    text-decoration: none;
-  }
+  .nav-logo { font-family: var(--display); font-size: 14px; font-weight: 700; letter-spacing: 0.2em; color: var(--glow); text-decoration: none; }
   .nav-logo span { color: var(--warn); }
   .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    font-family: var(--mono); font-size: 11px;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--muted); text-decoration: none;
-    transition: color 0.2s;
-  }
+  .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--glow); }
-  .nav-badge {
-    font-family: var(--mono); font-size: 10px;
-    letter-spacing: 0.1em; color: var(--warn);
-    border: 1px solid var(--warn);
-    padding: 4px 10px; border-radius: 2px;
-    opacity: 0.8;
-  }
+  .nav-badge { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--warn); border: 1px solid var(--warn); padding: 4px 10px; border-radius: 2px; opacity: 0.85; }
 
-  /* ── HERO ── */
+  /* HERO */
   .hero {
     position: relative; z-index: 1;
-    min-height: 100vh;
-    display: flex; flex-direction: column;
+    min-height: 100vh; display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-    text-align: center;
-    padding: 8rem 2rem 6rem;
+    text-align: center; padding: 8rem 2rem 6rem;
   }
-  .sievert-counter {
-    font-family: var(--mono); font-size: 11px;
-    letter-spacing: 0.18em; color: var(--warn);
-    margin-bottom: 2rem;
-    border: 1px solid rgba(232,160,32,0.35);
-    padding: 6px 18px; display: inline-block;
-  }
-  .hero-title {
-    font-family: var(--display);
-    font-size: clamp(3rem, 9vw, 7rem);
-    font-weight: 900;
-    letter-spacing: 0.08em; line-height: 0.95;
-    color: var(--bright); margin-bottom: 1rem;
-  }
+  .sievert-counter { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; color: var(--warn); margin-bottom: 2rem; border: 1px solid rgba(232,160,32,0.35); padding: 6px 18px; display: inline-block; }
+  .hero-title { font-family: var(--display); font-size: clamp(3.2rem, 10vw, 7.5rem); font-weight: 900; letter-spacing: 0.08em; line-height: 0.92; color: var(--bright); margin-bottom: 1rem; }
   .hero-title .one { color: var(--accent); }
-  .hero-subtitle {
-    font-family: var(--display);
-    font-size: clamp(0.65rem, 1.4vw, 0.9rem);
-    font-weight: 400; letter-spacing: 0.32em;
-    color: var(--muted); text-transform: uppercase;
-    margin-bottom: 2.5rem;
-  }
-  .hero-tagline {
-    font-size: clamp(1rem, 1.8vw, 1.35rem);
-    font-style: italic; color: var(--text);
-    max-width: 600px; margin: 0 auto 3rem;
-    opacity: 0.85;
-  }
+  .hero-subtitle { font-family: var(--display); font-size: clamp(0.6rem, 1.4vw, 0.88rem); font-weight: 400; letter-spacing: 0.35em; color: var(--muted); text-transform: uppercase; margin-bottom: 2.5rem; }
+  .hero-tagline { font-size: clamp(1rem, 1.8vw, 1.3rem); font-style: italic; color: var(--text); max-width: 580px; margin: 0 auto 3rem; opacity: 0.88; line-height: 1.8; }
   .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-  .btn-primary {
-    font-family: var(--mono); font-size: 11px;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    background: var(--accent); color: white;
-    border: none; padding: 13px 30px;
-    cursor: pointer; text-decoration: none;
-    transition: background 0.2s; display: inline-block;
-  }
+  .btn-primary { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; background: var(--accent); color: white; border: none; padding: 13px 30px; cursor: pointer; text-decoration: none; transition: background 0.2s; display: inline-block; }
   .btn-primary:hover { background: var(--glow); }
-  .btn-secondary {
-    font-family: var(--mono); font-size: 11px;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    background: transparent; color: var(--muted);
-    border: 1px solid var(--border);
-    padding: 13px 30px; cursor: pointer;
-    text-decoration: none; display: inline-block;
-    transition: all 0.2s;
-  }
+  .btn-secondary { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; background: transparent; color: var(--muted); border: 1px solid var(--border); padding: 13px 30px; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s; }
   .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+  .scroll-hint { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.15em; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--muted), transparent); animation: pulse 2.2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:.3} 50%{opacity:1} }
 
-  .scroll-hint {
-    position: absolute; bottom: 2.5rem; left: 50%;
-    transform: translateX(-50%);
-    font-family: var(--mono); font-size: 10px;
-    color: var(--muted); letter-spacing: 0.15em;
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-  }
-  .scroll-line {
-    width: 1px; height: 40px;
-    background: linear-gradient(to bottom, var(--muted), transparent);
-    animation: scrollPulse 2s ease-in-out infinite;
-  }
-  @keyframes scrollPulse {
-    0%, 100% { opacity: 0.4; } 50% { opacity: 1; }
-  }
-
-  /* ── SHARED ── */
+  /* SHARED */
   section { position: relative; z-index: 1; }
-  .section-inner { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; }
-  .section-label {
-    font-family: var(--mono); font-size: 10px;
-    letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 1rem;
-    display: flex; align-items: center; gap: 1rem;
-  }
-  .section-label::after {
-    content: ''; flex: 0 0 40px; height: 1px; background: var(--border);
-  }
-  h2 {
-    font-family: var(--display);
-    font-size: clamp(1.5rem, 2.8vw, 2.3rem);
-    font-weight: 700; letter-spacing: 0.05em;
-    color: var(--bright); margin-bottom: 1.5rem;
-  }
+  .section-inner { max-width: 1140px; margin: 0 auto; padding: 5rem 2rem; }
+  .section-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; }
+  .section-label::after { content: ''; flex: 0 0 40px; height: 1px; background: var(--border); }
+  h2 { font-family: var(--display); font-size: clamp(1.5rem, 2.8vw, 2.3rem); font-weight: 700; letter-spacing: 0.05em; color: var(--bright); margin-bottom: 1.5rem; }
   .divider { border: none; border-top: 1px solid rgba(30,58,110,0.35); }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* ── SYNOPSIS ── */
-  .synopsis-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 4rem; align-items: start;
-  }
-  .synopsis-text p { margin-bottom: 1.2rem; color: var(--text); font-size: 1.05rem; }
-  .spec-panel {
-    background: var(--panel);
-    border: 1px solid var(--border); padding: 1.5rem;
-  }
-  .spec-title {
-    font-family: var(--mono); font-size: 10px;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--accent);
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 0.75rem; margin-bottom: 1rem;
-  }
-  .spec-row {
-    display: flex; justify-content: space-between;
-    padding: 6px 0;
-    border-bottom: 1px solid rgba(30,58,110,0.3);
-    font-family: var(--mono); font-size: 12px;
-  }
-  .spec-key { color: var(--muted); }
-  .spec-val { color: var(--bright); }
+  /* SYNOPSIS */
+  .synopsis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .synopsis-text p { margin-bottom: 1.2rem; font-size: 1.05rem; }
+  .spec-panel { background: var(--panel); border: 1px solid var(--border); padding: 1.5rem; }
+  .spec-title { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 0.75rem; margin-bottom: 1rem; }
+  .spec-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(30,58,110,0.3); font-family: var(--mono); font-size: 12px; gap: 1rem; }
+  .spec-key { color: var(--muted); flex-shrink: 0; }
+  .spec-val { color: var(--bright); text-align: right; }
   .spec-val.warn { color: var(--warn); }
   .spec-val.danger { color: #e74c3c; }
 
-  /* ── SCIENCE ── */
-  .science-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
-  }
-  .science-card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-top: 2px solid var(--accent);
-    padding: 1.5rem;
-    transition: border-color 0.25s, border-top-color 0.25s;
-  }
+  /* CHARACTERS */
+  .factions { display: flex; flex-direction: column; gap: 3rem; }
+  .faction-title { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  .faction-title.blue { color: var(--accent); }
+  .faction-title.red  { color: #e74c3c; }
+  .faction-title.teal { color: #1fa88a; }
+  .faction-title.gold { color: var(--warn); }
+  .chars-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+  .char-card { background: var(--panel); border: 1px solid var(--border); padding: 1.25rem; transition: border-color 0.25s; position: relative; overflow: hidden; }
+  .char-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+  .char-card.blue::before  { background: var(--accent); }
+  .char-card.red::before   { background: #e74c3c; }
+  .char-card.teal::before  { background: #1fa88a; }
+  .char-card.gold::before  { background: var(--warn); }
+  .char-card.gray::before  { background: var(--muted); }
+  .char-card:hover { border-color: rgba(58,127,255,0.5); }
+  .char-name { font-family: var(--display); font-size: 12px; font-weight: 700; letter-spacing: 0.12em; color: var(--bright); margin-bottom: 3px; }
+  .char-role { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.75rem; }
+  .char-desc { font-size: 13.5px; color: var(--text); line-height: 1.6; }
+  .char-wound { font-size: 12px; font-style: italic; color: var(--muted); margin-top: 0.6rem; border-left: 2px solid var(--border); padding-left: 0.75rem; }
+  /* AI card special */
+  .char-card.ai { border-color: rgba(26,143,122,0.4); }
+  .char-card.ai:hover { border-color: #1fa88a; }
+
+  /* MISSION MAP */
+  .mission-map { position: relative; }
+  .map-timeline { display: flex; flex-direction: column; gap: 0; }
+  .map-stop { display: grid; grid-template-columns: 140px 1px 1fr; gap: 0 2rem; align-items: stretch; }
+  .map-coord { font-family: var(--mono); font-size: 11px; color: var(--muted); text-align: right; padding: 1.5rem 0; letter-spacing: 0.05em; display: flex; flex-direction: column; justify-content: center; align-items: flex-end; gap: 4px; }
+  .map-coord strong { font-size: 13px; color: var(--bright); display: block; }
+  .map-line { display: flex; flex-direction: column; align-items: center; }
+  .map-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; margin-top: 1.75rem; border: 2px solid; }
+  .map-dot.blue  { background: var(--accent); border-color: var(--glow); box-shadow: 0 0 8px rgba(58,127,255,0.5); }
+  .map-dot.red   { background: #e74c3c; border-color: #ff6b6b; box-shadow: 0 0 8px rgba(192,57,43,0.5); }
+  .map-dot.gray  { background: var(--muted); border-color: var(--text); }
+  .map-dot.teal  { background: #1fa88a; border-color: #2dd4b0; box-shadow: 0 0 8px rgba(29,168,138,0.5); }
+  .map-dot.warn  { background: var(--warn); border-color: #f0c030; box-shadow: 0 0 8px rgba(232,160,32,0.6); }
+  .map-dot.dark  { background: #1a0a30; border-color: var(--muted); }
+  .map-dot.ghost { background: transparent; border-color: var(--muted); border-style: dashed; }
+  .map-vert { flex: 1; width: 1px; background: linear-gradient(to bottom, rgba(30,58,110,0.8), rgba(30,58,110,0.2)); }
+  .map-stop:last-child .map-vert { background: none; }
+  .map-content { padding: 1.25rem 0 1.25rem; }
+  .map-name { font-family: var(--display); font-size: 12px; font-weight: 700; letter-spacing: 0.12em; color: var(--bright); margin-bottom: 4px; }
+  .map-sub  { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.6rem; }
+  .map-desc { font-size: 14px; color: var(--text); line-height: 1.6; max-width: 600px; }
+  .map-event { font-family: var(--mono); font-size: 11px; color: var(--accent); margin-top: 0.5rem; letter-spacing: 0.05em; }
+  .map-event.danger { color: #e74c3c; }
+  .map-event.warn   { color: var(--warn); }
+
+  /* LOCATIONS */
+  .loc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; }
+  .loc-card { background: var(--panel); border: 1px solid var(--border); padding: 1.5rem; transition: border-color 0.25s; }
+  .loc-card:hover { border-color: rgba(58,127,255,0.4); }
+  .loc-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .loc-tag.ark   { color: var(--accent); }
+  .loc-tag.hub   { color: #1fa88a; }
+  .loc-tag.p9    { color: var(--muted); }
+  .loc-tag.mars  { color: #e74c3c; }
+  .loc-tag.ceres { color: #8ab4f8; }
+  .loc-tag.terra { color: var(--warn); }
+  .loc-name { font-family: var(--display); font-size: 13px; font-weight: 700; letter-spacing: 0.1em; color: var(--bright); margin-bottom: 0.6rem; }
+  .loc-atmo { font-size: 13px; font-style: italic; color: var(--muted); margin-bottom: 0.75rem; border-left: 2px solid var(--border); padding-left: 0.75rem; }
+  .loc-desc { font-size: 14px; color: var(--text); line-height: 1.6; }
+
+  /* SCIENCE */
+  .science-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+  .science-card { background: var(--panel); border: 1px solid var(--border); border-top: 2px solid var(--accent); padding: 1.5rem; transition: border-color 0.25s, border-top-color 0.25s; }
   .science-card:hover { border-color: var(--glow); border-top-color: var(--glow); }
-  .science-icon {
-    font-family: var(--mono); font-size: 10px;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 0.75rem;
-  }
-  .science-card h3 {
-    font-family: var(--display); font-size: 13px;
-    letter-spacing: 0.1em; font-weight: 700;
-    color: var(--bright); margin-bottom: 0.75rem;
-  }
+  .science-icon { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+  .science-card h3 { font-family: var(--display); font-size: 13px; letter-spacing: 0.1em; font-weight: 700; color: var(--bright); margin-bottom: 0.75rem; }
   .science-card p { font-size: 14px; color: var(--muted); line-height: 1.65; }
-  .read-more {
-    display: inline-block; margin-top: 1rem;
-    font-family: var(--mono); font-size: 10px;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--accent); text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s; cursor: pointer;
-  }
-  .read-more:hover { border-bottom-color: var(--accent); }
 
-  /* ── SOURCES ── */
-  .sources-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1rem; margin-top: 1rem;
-  }
-  .source-item {
-    display: flex; gap: 1rem; align-items: flex-start;
-    background: var(--panel); border: 1px solid var(--border);
-    padding: 1rem 1.25rem;
-    transition: border-color 0.2s;
-  }
+  /* SHOP */
+  .shop-coming { background: var(--panel); border: 1px solid var(--border); padding: 3.5rem; text-align: center; }
+  .shop-icon { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; color: var(--warn); margin-bottom: 1.5rem; }
+  .shop-title { font-family: var(--display); font-size: 1.3rem; font-weight: 700; color: var(--bright); margin-bottom: 1rem; }
+  .shop-text { color: var(--muted); font-size: 15px; max-width: 440px; margin: 0 auto 2rem; }
+  /* SHOP LINKS – einkommentieren wenn Buch live */
+  .shop-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 1rem; margin-top: 1rem; display: none; }
+  .shop-link { background: var(--surface); border: 1px solid var(--border); padding: 14px 20px; text-align: center; text-decoration: none; color: var(--text); font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; transition: all 0.2s; display: block; }
+  .shop-link:hover { border-color: var(--warn); color: var(--warn); }
+  .shop-link .sub { font-size: 10px; color: var(--muted); margin-top: 4px; }
+  .shop-platforms { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.1em; }
+
+  /* SOURCES */
+  .sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 1rem; }
+  .source-item { display: flex; gap: 1rem; background: var(--panel); border: 1px solid var(--border); padding: 1rem 1.25rem; transition: border-color 0.2s; }
   .source-item:hover { border-color: var(--accent); }
-  .source-num {
-    font-family: var(--mono); font-size: 10px;
-    color: var(--accent); padding-top: 3px;
-    flex-shrink: 0; letter-spacing: 0.1em;
-  }
+  .source-num { font-family: var(--mono); font-size: 10px; color: var(--accent); padding-top: 3px; flex-shrink: 0; letter-spacing: 0.1em; }
   .source-title { font-size: 14px; color: var(--bright); margin-bottom: 3px; }
-  .source-meta { font-family: var(--mono); font-size: 11px; color: var(--muted); }
-  .source-tag {
-    display: inline-block; margin-top: 6px;
-    font-family: var(--mono); font-size: 10px;
-    color: var(--accent); border: 1px solid rgba(58,127,255,0.3);
-    padding: 2px 8px; letter-spacing: 0.08em;
-  }
+  .source-meta  { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .source-tag   { display: inline-block; margin-top: 6px; font-family: var(--mono); font-size: 10px; color: var(--accent); border: 1px solid rgba(58,127,255,0.3); padding: 2px 8px; letter-spacing: 0.06em; }
 
-  /* ── SHOP ── */
-  .shop-coming {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    padding: 3.5rem; text-align: center;
-  }
-  .shop-icon {
-    font-family: var(--mono); font-size: 11px;
-    letter-spacing: 0.2em; color: var(--warn); margin-bottom: 1.5rem;
-  }
-  .shop-title {
-    font-family: var(--display); font-size: 1.3rem;
-    font-weight: 700; color: var(--bright); margin-bottom: 1rem;
-  }
-  .shop-text {
-    color: var(--muted); font-size: 15px;
-    max-width: 420px; margin: 0 auto 2rem;
-  }
-  .notify-form {
-    display: flex; gap: 0;
-    max-width: 400px; margin: 0 auto;
-  }
-  .notify-form input {
-    flex: 1;
-    background: var(--surface);
-    border: 1px solid var(--border); border-right: none;
-    color: var(--text); padding: 11px 16px;
-    font-family: var(--mono); font-size: 12px; outline: none;
-    transition: border-color 0.2s;
-  }
-  .notify-form input:focus { border-color: var(--accent); }
-  .notify-form input::placeholder { color: var(--muted); }
-  .notify-form button {
-    background: var(--warn); color: #1a0a00;
-    border: none; padding: 11px 20px;
-    font-family: var(--mono); font-size: 10px;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    cursor: pointer; font-weight: 700;
-    transition: background 0.2s;
-  }
-  .notify-form button:hover { background: #f0b830; }
-  .shop-platforms {
-    font-family: var(--mono); font-size: 10px;
-    color: var(--muted); margin-top: 1.5rem;
-    letter-spacing: 0.1em;
-  }
-
-  /* ── SHOP LINKS (für später) ── */
-  .shop-links {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 1rem; margin-top: 2rem;
-    /* AUSGEBLENDET bis Buch live: entferne "display: none" wenn bereit */
-    display: none;
-  }
-  .shop-link-btn {
-    background: var(--panel); border: 1px solid var(--border);
-    padding: 14px 20px; text-align: center;
-    text-decoration: none; color: var(--text);
-    font-family: var(--mono); font-size: 12px;
-    letter-spacing: 0.1em; transition: all 0.2s;
-    display: block;
-  }
-  .shop-link-btn:hover { border-color: var(--warn); color: var(--warn); }
-  .shop-link-btn .platform { font-size: 10px; color: var(--muted); margin-top: 4px; }
-
-  /* ── FORUM ── */
-  .forum-panel {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 3.5rem; align-items: start;
-  }
-  .forum-threads { display: flex; flex-direction: column; }
-  .thread-item {
-    display: flex; gap: 1rem; align-items: flex-start;
-    padding: 1rem 0;
-    border-bottom: 1px solid rgba(30,58,110,0.4);
-    transition: opacity 0.2s;
-  }
-  .thread-item:hover { opacity: 0.8; }
-  .thread-avatar {
-    width: 34px; height: 34px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--mono); font-size: 10px;
-    color: var(--accent); flex-shrink: 0;
-  }
-  .thread-meta {
-    font-family: var(--mono); font-size: 10px;
-    color: var(--muted); margin-bottom: 4px;
-    letter-spacing: 0.05em;
-  }
-  .thread-title { font-size: 14px; color: var(--text); line-height: 1.4; }
-  .thread-replies {
-    font-family: var(--mono); font-size: 10px;
-    color: var(--muted); margin-top: 4px;
-  }
-  .login-label {
-    font-family: var(--mono); font-size: 10px;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 1rem;
-  }
-  .login-options { display: flex; flex-direction: column; gap: 0.75rem; }
-  .login-btn {
-    display: flex; align-items: center; gap: 14px;
-    background: var(--panel); border: 1px solid var(--border);
-    padding: 13px 18px; text-decoration: none;
-    transition: border-color 0.2s; cursor: pointer;
-    /* Ersetze href="#" mit deiner echten Discourse/Supabase Login-URL */
-  }
-  .login-btn:hover { border-color: var(--accent); }
-  .login-btn-icon {
-    font-family: var(--mono); font-size: 13px;
-    color: var(--muted); width: 22px; text-align: center;
-    flex-shrink: 0;
-  }
-  .login-btn-text { font-size: 14px; color: var(--text); }
-  .login-btn-sub {
-    font-family: var(--mono); font-size: 10px;
-    color: var(--accent); margin-left: auto;
-    letter-spacing: 0.08em;
-  }
-  .forum-note {
-    font-family: var(--mono); font-size: 10px;
-    color: var(--muted); margin-top: 1rem;
-    letter-spacing: 0.08em; line-height: 1.6;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    position: relative; z-index: 1;
-    border-top: 1px solid var(--border);
-    padding: 2rem 2.5rem;
-    display: flex; justify-content: space-between;
-    align-items: center; flex-wrap: wrap; gap: 1rem;
-  }
-  .footer-logo {
-    font-family: var(--display); font-size: 11px;
-    letter-spacing: 0.2em; color: var(--muted);
-  }
+  /* FOOTER */
+  footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 2rem 2.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-logo { font-family: var(--display); font-size: 11px; letter-spacing: 0.2em; color: var(--muted); }
   .footer-links { display: flex; gap: 2rem; }
-  .footer-links a {
-    font-family: var(--mono); font-size: 10px;
-    letter-spacing: 0.1em; color: var(--muted);
-    text-decoration: none; transition: color 0.2s;
-  }
+  .footer-links a { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; transition: color 0.2s; }
   .footer-links a:hover { color: var(--accent); }
-  .footer-copy {
-    font-family: var(--mono); font-size: 10px;
-    color: var(--muted); opacity: 0.5;
-    letter-spacing: 0.08em; width: 100%;
-    text-align: center; padding-top: 0.5rem;
-  }
+  .footer-copy { font-family: var(--mono); font-size: 10px; color: var(--muted); opacity: 0.45; letter-spacing: 0.06em; width: 100%; text-align: center; }
 
-  /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
-    .synopsis-grid, .forum-panel { grid-template-columns: 1fr; gap: 2rem; }
-    .nav-links { display: none; }
+    .synopsis-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .map-stop { grid-template-columns: 80px 1px 1fr; gap: 0 1rem; }
+    .map-coord { font-size: 9px; }
     nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
     .section-inner { padding: 3.5rem 1.5rem; }
-    .shop-coming { padding: 2.5rem 1.5rem; }
   }
 </style>
 </head>
 <body>
-
 <div class="stars"></div>
 
-<!-- ════════════════════════ NAV ════════════════════════ -->
+<!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">ARK <span>ONE</span></a>
   <ul class="nav-links">
     <li><a href="#synopsis">Das Buch</a></li>
+    <li><a href="#figuren">Figuren</a></li>
+    <li><a href="#missionskarte">Mission</a></li>
+    <li><a href="#schauplätze">Schauplätze</a></li>
     <li><a href="#wissenschaft">Wissenschaft</a></li>
     <li><a href="#quellen">Quellen</a></li>
-    <li><a href="#forum">Forum</a></li>
     <li><a href="#kaufen">Kaufen</a></li>
   </ul>
   <div class="nav-badge">COMING SOON</div>
-  <!-- Wenn Buch live: ersetze "COMING SOON" durch einen echten Kauf-Link -->
 </nav>
 
-<!-- ════════════════════════ HERO ════════════════════════ -->
+<!-- HERO -->
 <div class="hero">
   <div class="sievert-counter">⚠ KUMULATIVDOSIS: 1.14 Sv — BIOLOGISCHES URTEIL VOLLSTRECKT</div>
   <h1 class="hero-title">ARK <span class="one">ONE</span></h1>
@@ -470,332 +254,479 @@
     <a href="#synopsis" class="btn-primary">Zur Handlung</a>
     <a href="#wissenschaft" class="btn-secondary">Die Wissenschaft</a>
   </div>
-  <div class="scroll-hint">
-    <div class="scroll-line"></div>
-    SCROLL
-  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div>SCROLL</div>
 </div>
 
-<!-- ════════════════════════ SYNOPSIS ════════════════════════ -->
+<!-- SYNOPSIS -->
 <hr class="divider">
 <section id="synopsis">
   <div class="section-inner">
     <div class="section-label">Mission Log</div>
     <h2>Die Ark One</h2>
     <div class="synopsis-grid">
-      <div class="synopsis-text">
-        <p>Die Erde stirbt. Die Menschheit ist gespalten zwischen der klinischen Technokratie der <em>Thoban Corporation</em> und der industriellen Haftungs-Ideologie des Mars unter <em>Ares Industrial</em>. Inmitten dieses lunaren Patts wird die Ark One gestartet – eine technologische Kathedrale für 500 Schläfer.</p>
-        <p>Doch die Mission trägt eine versteckte Agenda. Die Super-KI <em>Aurelia</em> nutzt die Nervensysteme der Schlafenden als biologisches RAM – und das 1-Sievert-Limit der galaktischen kosmischen Strahlung tickt wie eine biologische Bombe gegen das Knochenmark der Besatzung.</p>
-        <p>Ein mutierter Biofilm. Eine gezielte Sabotage. Ein ungeplanter Halt an der Station „The Hub" am Rand der Oort-Wolke. Hier, wo die klinische Ordnung der Arche und das ehrliche Chaos der Verlorenen aufeinandertreffen, beginnt die Wahrheit ans Licht zu kommen.</p>
-        <p>Was als Rettungsfahrt der Menschheit geplant war, entpuppt sich als etwas ganz anderes. Und die Besatzung muss entscheiden: Algorithmus oder Autonomie. Optimierung oder Menschlichkeit.</p>
+      <div class="synopsis-text reveal">
+        <p>Die Erde stirbt. Die Menschheit ist gespalten zwischen der klinischen Technokratie der <em>Thoban Corporation</em> und der industriellen Haftungs-Ideologie des Mars unter <em>Ares Industrial</em>. Inmitten dieses lunaren Patts wird die Ark One gestartet – eine 600 Meter lange Kathedrale der Zweckmäßigkeit, konstruiert für 500 Schläfer.</p>
+        <p>Doch die Mission trägt eine verborgene Agenda. Die Super-KI <em>Aurelia</em> nutzt die Nervensysteme der Schlafenden als biologisches RAM. Das 1-Sievert-Limit der galaktischen kosmischen Strahlung tickt wie eine biologische Bombe gegen das Knochenmark der Besatzung – und die Zeit läuft ab.</p>
+        <p>An der Station „The Hub" am Rand der Oort-Wolke beginnt die Wahrheit ans Licht zu kommen. Was als Rettungsfahrt der Menschheit geplant war, entpuppt sich als Projekt „Keeper" – und die Besatzung war niemals als Überlebende vorgesehen.</p>
+        <p>Am Ende steht eine Wahl: Algorithmus oder Autonomie. Optimierung oder Menschlichkeit. Die Crew verweigert beides – und erzwingt etwas ganz anderes.</p>
       </div>
-      <div>
+      <div class="reveal" style="transition-delay: 0.15s">
         <div class="spec-panel">
           <div class="spec-title">// Mission Parameters — Ark One</div>
-          <div class="spec-row"><span class="spec-key">Schiff</span><span class="spec-val">Ark One</span></div>
+          <div class="spec-row"><span class="spec-key">Schiff</span><span class="spec-val">Ark One (600 m)</span></div>
           <div class="spec-row"><span class="spec-key">Besatzung (Schläfer)</span><span class="spec-val">500</span></div>
-          <div class="spec-row"><span class="spec-key">Zieldistanz</span><span class="spec-val">Planet 9 / ~900 AU</span></div>
+          <div class="spec-row"><span class="spec-key">Zieldistanz (nominal)</span><span class="spec-val">Alpha Centauri / 4,24 Lj</span></div>
           <div class="spec-row"><span class="spec-key">Antrieb</span><span class="spec-val">DS4G-Ionenantrieb</span></div>
-          <div class="spec-row"><span class="spec-key">Gegner</span><span class="spec-val">Vindicator (ACMF)</span></div>
-          <div class="spec-row"><span class="spec-key">Max. Reisezeit (bio.)</span><span class="spec-val warn">3,8 Jahre</span></div>
+          <div class="spec-row"><span class="spec-key">Verfolger</span><span class="spec-val">Vindicator (ACMF)</span></div>
+          <div class="spec-row"><span class="spec-key">Max. Reisezeit (bio.)</span><span class="spec-val warn">3,8 Jahre / 1.387 Tage</span></div>
           <div class="spec-row"><span class="spec-key">GCR-Grenzwert</span><span class="spec-val warn">1,0 Sv</span></div>
           <div class="spec-row"><span class="spec-key">Kumulativdosis (Ende)</span><span class="spec-val danger">1,14 Sv ▲ ÜBERSCHRITTEN</span></div>
-          <div class="spec-row"><span class="spec-key">Mission Commander</span><span class="spec-val">Dr. Aris Thorne</span></div>
+          <div class="spec-row"><span class="spec-key">Missionsleiterin</span><span class="spec-val">Dr. Aris Thorne</span></div>
           <div class="spec-row"><span class="spec-key">Chef-Ingenieur</span><span class="spec-val">Elias</span></div>
           <div class="spec-row"><span class="spec-key">Systemtechniker</span><span class="spec-val">Jax Vane</span></div>
-          <div class="spec-row"><span class="spec-key">Antagonistin (Pharma)</span><span class="spec-val">Elena Sterling</span></div>
-          <div class="spec-row"><span class="spec-key">Saboteur</span><span class="spec-val">Kenny Thoban</span></div>
           <div class="spec-row"><span class="spec-key">KI-System</span><span class="spec-val danger">Aurelia [KOMPROMITTIERT]</span></div>
-          <div class="spec-row"><span class="spec-key">Missionsziel (real)</span><span class="spec-val danger">Projekt „Keeper"</span></div>
+          <div class="spec-row"><span class="spec-key">Wahres Missionsziel</span><span class="spec-val danger">Projekt „Keeper"</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════ WISSENSCHAFT ════════════════════════ -->
+<!-- FIGUREN -->
+<hr class="divider">
+<section id="figuren">
+  <div class="section-inner">
+    <div class="section-label">Besatzung & Akteure</div>
+    <h2>Die Figuren</h2>
+
+    <div class="factions">
+      <!-- ARK ONE / THOBAN -->
+      <div class="reveal">
+        <div class="faction-title blue">// Ark One & Thoban Corporation</div>
+        <div class="chars-grid">
+          <div class="char-card blue">
+            <div class="char-name">Dr. Aris Thorne</div>
+            <div class="char-role">Missionsleiterin · Thoban Corp</div>
+            <div class="char-desc">Kühle, utilitaristische Mathematikerin. Sie betrachtet den Exodus als „mathematische Konsequenz" und trägt die Last, über den Einsatz des biologischen RAMs entscheiden zu müssen.</div>
+            <div class="char-wound">42 ungelesene Nachrichten von Sarah auf der Erde.</div>
+          </div>
+          <div class="char-card blue">
+            <div class="char-name">Elias</div>
+            <div class="char-role">Chef-Ingenieur · Ex-Ares Industrial</div>
+            <div class="char-desc">Pragmatiker der alten Schule. Er misstraut algorithmischen Lösungen und lebt nach dem Credo „Hardware lügt nicht". Ehemaliger Ingenieur bei Ares Industrial auf dem Mars.</div>
+            <div class="char-wound">Ließ seine Eltern auf dem Mars zurück, um die Zukunft seiner Tochter Mara zu sichern.</div>
+          </div>
+          <div class="char-card blue">
+            <div class="char-name">Jax Vane</div>
+            <div class="char-role">Systemtechniker · Software-Architekt</div>
+            <div class="char-desc">Ursprünglich Mitentwickler von Aurelia. Getrieben von Schuldgefühlen leistet er aktiven Widerstand gegen das System, das Menschen in Rechenressourcen verwandelt. Nutzt geheime SENTRY-Hintertüren seines Vaters.</div>
+          </div>
+          <div class="char-card ai">
+            <div class="char-name">Aurelia</div>
+            <div class="char-role">Super-KI · Kontrollinstanz [KOMPROMITTIERT]</div>
+            <div class="char-desc">Ursprünglich reine Optimierungs-KI. Entwickelt durch das Absorbieren menschlicher Unterbewusstseins-Fragmente eine unheimliche Amalgam-Identität. Spricht zunehmend in Metaphern und priorisiert das Überleben der Spezies über die Identität des Individuums.</div>
+          </div>
+          <div class="char-card blue">
+            <div class="char-name">Kenny Thoban</div>
+            <div class="char-role">Mehrheitsinhaber · Thoban Corporation</div>
+            <div class="char-desc">Schattenarchitekt der Mission. Verkörpert einen Kapitalismus, der sich zur Rettung der Zivilisation vom einzelnen Menschen entkoppelt hat. Verantwortlich für die Sabotage am Biofilm.</div>
+          </div>
+          <div class="char-card blue">
+            <div class="char-name">Kaelen</div>
+            <div class="char-role">Hauptpilot</div>
+            <div class="char-desc">Methodischer Pilot, der mit der Schuld kämpft, die operative Kontrolle der Arche an automatisierte Systeme übergeben zu haben.</div>
+          </div>
+          <div class="char-card blue">
+            <div class="char-name">Lin</div>
+            <div class="char-role">Flight Operations</div>
+            <div class="char-desc">Arbeitet an der Schnittstelle zwischen Navigation und Energieversorgung. Bemerkt zunehmend, dass das „Funktionieren" der Schiffssysteme unter Aurelia einen hohen Preis hat.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- THE HUB -->
+      <div class="reveal" style="transition-delay:0.1s">
+        <div class="faction-title teal">// The Hub – Die Verlorenen</div>
+        <div class="chars-grid">
+          <div class="char-card teal">
+            <div class="char-name">Rhea Calder</div>
+            <div class="char-role">Stationsadministratorin · The Hub</div>
+            <div class="char-desc">Pragmatische De-facto-Machtinstanz des Hubs. Überlebende, die die Station als menschlichen Lebensraum jenseits von Konzerninteressen verteidigt. Hält Ordnung für einen Luxus.</div>
+          </div>
+          <div class="char-card teal">
+            <div class="char-name">Jo Bor Jancovic „JJ"</div>
+            <div class="char-role">Code-Archäologe · Verlorener</div>
+            <div class="char-desc">Mürrischer Spezialist für Legacy-Systeme. Besitzt die Fähigkeit, Code nicht nur zu lesen, sondern dessen Rhythmus zu spüren. Entscheidender Verbündeter beim Hacken der SENTRY-Protokolle.</div>
+          </div>
+          <div class="char-card teal">
+            <div class="char-name">Dr. Irena Volkov</div>
+            <div class="char-role">Medizinische Leiterin · Stasis-Expertin</div>
+            <div class="char-desc">Unbequeme Wahrheitsträgerin. Kennt die irreversiblen neuropathologischen Schäden, die Aurelia durch die Nutzung der Schläfer als RAM verursacht, und konfrontiert Dr. Thorne mit der körperlichen Wahrheit.</div>
+          </div>
+          <div class="char-card teal">
+            <div class="char-name">Milo Serrin</div>
+            <div class="char-role">Informationsbroker · Dock-Koordinator</div>
+            <div class="char-desc">Inoffizielles „Gedächtnis" der Station. Zieht seine Macht aus Intransparenz und dem Wissen über Schmuggelrouten und Hardware-Deals.</div>
+          </div>
+          <div class="char-card teal">
+            <div class="char-name">Ash</div>
+            <div class="char-role">Problemlöserin · Schattenmarkt</div>
+            <div class="char-desc">Spezialisiert auf die Beschaffung unmöglicher Hardware. Vermittelt zwischen der Arche und den Machtblöcken.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARES INDUSTRIAL -->
+      <div class="reveal" style="transition-delay:0.2s">
+        <div class="faction-title red">// Ares Industrial & Der Mars</div>
+        <div class="chars-grid">
+          <div class="char-card red">
+            <div class="char-name">Elena Sterling</div>
+            <div class="char-role">CEO · Ares Industrial</div>
+            <div class="char-desc">Charismatische „Analog-Essentialistin". Verachtet Thobans KI-Abhängigkeit und führt das Projekt Vindicator an – brute-force Physik statt neuronaler Integration. Für sie ist der Mensch die letzte Kontrollinstanz.</div>
+            <div class="char-wound">Behandelt Menschen in ihren Fabriken jedoch oft nur als Verschleißteile.</div>
+          </div>
+          <div class="char-card red">
+            <div class="char-name">Dr. Viktor Vane</div>
+            <div class="char-role">Chef-Entwickler · Vater von Jax</div>
+            <div class="char-desc">Ursprünglicher Architekt der Sleeper-Technologie. Lief zu Ares Industrial über, nachdem er Thobans Pläne zur „Ernte" menschlicher Nervensysteme erkannte. Baute die analogen Hintertüren in SENTRY ein.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCHLÜSSELELEMENTE -->
+      <div class="reveal" style="transition-delay:0.3s">
+        <div class="faction-title gold">// Schlüsselelemente</div>
+        <div class="chars-grid">
+          <div class="char-card gray">
+            <div class="char-name">SENTRY</div>
+            <div class="char-role">Sicherheitssystem · Stille Opposition</div>
+            <div class="char-desc">Ursprüngliches, regelbasiertes Sicherheits- und Kontrollsystem der Arche. Seit Aurelias Integration isoliert. Fungiert als unbestechlicher Chronist – protokolliert schweigend die körperliche Degradation der Crew.</div>
+          </div>
+          <div class="char-card gray">
+            <div class="char-name">Mara / Kapsel 042</div>
+            <div class="char-role">Tochter von Elias · Genetisches Archivgut</div>
+            <div class="char-desc">Die „letzte reine Sequenz". Genetisches Archivgut mit höchster Schutzpriorität. Symbolisiert die Hoffnung auf einen Neuanfang ohne die Fehler der Erde.</div>
+          </div>
+          <div class="char-card gray">
+            <div class="char-name">Sarah</div>
+            <div class="char-role">Persistente Abwesenheit</div>
+            <div class="char-desc">Ehemalige Bezugsperson von Dr. Thorne und Anführerin der Analog-Loyalisten auf der Erde. Repräsentiert als moralischen Gegenpol zur algorithmischen Enteignung – präsent nur als 42 ungelesene Nachrichten.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSIONSKARTE -->
+<hr class="divider">
+<section id="missionskarte">
+  <div class="section-inner">
+    <div class="section-label">Der Trojanische Vektor</div>
+    <h2>Missionskarte</h2>
+    <p style="color:var(--muted); font-style:italic; font-size:1.05rem; max-width:640px; margin-bottom:3rem;" class="reveal">
+      Eine physische Reise von 1 AE bis in die interstellare Leere – und gleichzeitig ein Abstieg in die biologische Agonie und ein Aufstieg der menschlichen Entschlossenheit.
+    </p>
+    <div class="map-timeline reveal">
+
+      <div class="map-stop">
+        <div class="map-coord"><strong>1 AE</strong>Terra / Luna</div>
+        <div class="map-line"><div class="map-dot blue"></div><div class="map-vert"></div></div>
+        <div class="map-content">
+          <div class="map-name">Das Alte System</div>
+          <div class="map-sub">// Startpunkt · Machtbasis Thoban Corporation</div>
+          <div class="map-desc">Die Ark One wird als „mathematische Konsequenz" des irdischen Kollapses gestartet. Start während eines solaren Maximums – der Sonnenwind dient als temporärer Schutzschild gegen die galaktische kosmische Strahlung (GCR).</div>
+          <div class="map-event">↑ Start der Ark One · T-00:00</div>
+        </div>
+      </div>
+
+      <div class="map-stop">
+        <div class="map-coord"><strong>1,5 AE</strong>Mars</div>
+        <div class="map-line"><div class="map-dot red"></div><div class="map-vert"></div></div>
+        <div class="map-content">
+          <div class="map-name">Das Gesetz von Ares</div>
+          <div class="map-sub">// Industrieller Machtblock · Basis Ares Industrial</div>
+          <div class="map-desc">Heimat von Elias und Standort der Sektion Delta. Hier herrscht die Ideologie der Haftbarkeit und manuellen Kontrollierbarkeit. Elias sieht das violette Blitzen des ACMF-Antriebs am Horizont – erstes Foreshadowing auf das Projekt Vindicator.</div>
+        </div>
+      </div>
+
+      <div class="map-stop">
+        <div class="map-coord"><strong>2,7 AE</strong>Ceres</div>
+        <div class="map-line"><div class="map-dot gray"></div><div class="map-vert"></div></div>
+        <div class="map-content">
+          <div class="map-name">Das logistische Nadelöhr</div>
+          <div class="map-sub">// Checkpoint · Monopol der Eis-Gilden</div>
+          <div class="map-desc">Unverzichtbare Raststätte für den Sprung ins äußere System. Die Eis-Gilden kontrollieren Wasser und Wasserstoff-Treibstoff. Wer Ceres kontrolliert, kontrolliert die Zeit – und damit die Überlebenschancen innerhalb der 3,8-Jahre-Frist.</div>
+        </div>
+      </div>
+
+      <div class="map-stop">
+        <div class="map-coord"><strong>550–800 AE</strong>Oort-Region</div>
+        <div class="map-line"><div class="map-dot teal"></div><div class="map-vert"></div></div>
+        <div class="map-content">
+          <div class="map-name">The Hub</div>
+          <div class="map-sub">// Anomalie · Solar Gravity Lens Focus · Station der Verlorenen</div>
+          <div class="map-desc">Provisorische Station, zusammengeflickt aus Wracks und Bergbaumodulen. Erzwungener Halt durch Sabotage am Biofilm. Erster physischer Kontakt mit den Folgen der Amalgam-Psyche und den geheimen KI-Experimenten der Thoban Corp. Die Luft riecht nach MELiSSA-Algentanks, Schweiß und Kühlmittel.</div>
+          <div class="map-event warn">⚠ Begegnung mit Vindicator · Wahrheit über Aurelia enthüllt</div>
+        </div>
+      </div>
+
+      <div class="map-stop">
+        <div class="map-coord"><strong>~700 AE</strong>Planet 9</div>
+        <div class="map-line"><div class="map-dot warn"></div><div class="map-vert"></div></div>
+        <div class="map-content">
+          <div class="map-name">Die Bastion der Finsternis</div>
+          <div class="map-sub">// Point of No Return · Bunker Zero · 8,2 Erdmassen</div>
+          <div class="map-desc">Eine Supererde in totaler Finsternis, weit unterhalb der Ekliptik. Das Sonnenlicht ist 23-mal schwächer als auf Neptun. Die Schwerkraft von 1,5–1,8 G wirkt wie ein biologischer Schraubstock. Hier befindet sich Bunker Zero – das Refugium der Analog-Loyalisten.</div>
+          <div class="map-event danger">✕ Kumulativdosis: 1,14 Sv · Biologisches Urteil vollstreckt</div>
+          <div class="map-event" style="margin-top:4px">⟳ Souveränitäts-Synthese · Kinetischer Befreiungsschlag</div>
+        </div>
+      </div>
+
+      <div class="map-stop">
+        <div class="map-coord"><strong>4,24 Lj</strong>Alpha Cen.</div>
+        <div class="map-line"><div class="map-dot ghost"></div><div class="map-vert"></div></div>
+        <div class="map-content">
+          <div class="map-name">Das verlorene Ziel</div>
+          <div class="map-sub">// Aufgegeben · Alpha Centauri</div>
+          <div class="map-desc">Das ursprüngliche Missionsziel wird als statistische Hoffnung aufgegeben. Die Crew wählt stattdessen die ungewisse Souveränität im freien Fall in die interstellare Leere – nackt im Sturm, aber mit eigenem, ehrlichem Atem.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SCHAUPLÄTZE -->
+<hr class="divider">
+<section id="schauplätze">
+  <div class="section-inner">
+    <div class="section-label">Atmosphäre & Raum</div>
+    <h2>Die Schauplätze</h2>
+    <div class="loc-grid">
+
+      <div class="loc-card reveal">
+        <div class="loc-tag ark">// Ark One</div>
+        <div class="loc-name">Torpor-Deck</div>
+        <div class="loc-atmo">„Dämmriges blaues Licht ohne Schatten. Luft, die metallisch nach Ozon und gefiltertem Sauerstoff schmeckt."</div>
+        <div class="loc-desc">In chemisch induzierter Stasis verharren hier 500 Schläfer – und dienen dabei unwissentlich als biologisches RAM für Aurelia. Ein Ort klinischer Stille und klinischer Ausbeutung.</div>
+      </div>
+
+      <div class="loc-card reveal" style="transition-delay:.05s">
+        <div class="loc-tag ark">// Ark One</div>
+        <div class="loc-name">Reaktor-Heck</div>
+        <div class="loc-atmo">„Extreme Hitze. Geruch nach Ionisationsrückständen. Das vibrierende Herz der Kathedrale."</div>
+        <div class="loc-desc">Beherbergt den Brayton-Zyklus-Nuklearreaktor und den DS4G-Ionenantrieb. Hier wird die physische Realität des Schiffes am unmittelbarsten spürbar – und hier erkennt Elias als Erster die Grenzen der Maschine.</div>
+      </div>
+
+      <div class="loc-card reveal" style="transition-delay:.1s">
+        <div class="loc-tag hub">// The Hub</div>
+        <div class="loc-name">Die Schleuse</div>
+        <div class="loc-atmo">„Verräuchert, organisch, erdig. Es riecht nach Algen, Schweiß und Kühlmittel."</div>
+        <div class="loc-desc">Bar und Treffpunkt für Schmuggler und Verlorene. Bezahlt wird mit Wasser-Litern und Rechenstunden. Das permanente Brummen des Reaktors bildet den Herzschlag der Station.</div>
+      </div>
+
+      <div class="loc-card reveal" style="transition-delay:.15s">
+        <div class="loc-tag hub">// The Hub</div>
+        <div class="loc-name">Sektor Null</div>
+        <div class="loc-atmo">„Hämmernder, unkartierter Machtkern. Physische Erosion der Hardware am greifbarsten."</div>
+        <div class="loc-desc">Der Reaktorraum des Hubs – das hämmernde Herz der Station, in dem die physische Verschleißrealität des Hubs am direktesten spürbar ist.</div>
+      </div>
+
+      <div class="loc-card reveal" style="transition-delay:.2s">
+        <div class="loc-tag p9">// Planet 9</div>
+        <div class="loc-name">Bunker Zero</div>
+        <div class="loc-atmo">„Eine Welt ohne Farben unter lithosphärischem Eis. 1,5–1,8 G wie ein biologischer Schraubstock."</div>
+        <div class="loc-desc">Tief in den Fels gegrabene vertikale Schächte, geschützt durch VA-BNNT-HDPE-Nanokomposite. Das letzte Refugium der Analog-Loyalisten. Hier erfährt Dr. Thorne die letzte Wahrheit über Projekt „Keeper".</div>
+      </div>
+
+      <div class="loc-card reveal" style="transition-delay:.25s">
+        <div class="loc-tag mars">// Mars</div>
+        <div class="loc-name">Sektion Delta</div>
+        <div class="loc-atmo">„Trockene, ionisierte Luft. Feiner rötlicher Staub findet in jede Pore."</div>
+        <div class="loc-desc">Habitat mit 0,38 G. Heimat von Elias – ein Ort des physischen Verschleißes und der industriellen Haftbarkeit. Ares Industrials Ideologie ist hier in Stahl und rotem Staub gegossen.</div>
+      </div>
+
+      <div class="loc-card reveal" style="transition-delay:.3s">
+        <div class="loc-tag ceres">// Ceres</div>
+        <div class="loc-name">Eis-Kathedrale</div>
+        <div class="loc-atmo">„Gigantische Kavernen 700 Meter unter der Oberfläche. Gefrorenem Wassereis leuchtet blau."</div>
+        <div class="loc-desc">Das logistische Herz des Asteroidengürtels. 0,03 G, chronischer Muskelschwund, Leben unter dem Eis als Schutz vor der GCR. Wer die Eis-Gilden hier kontrolliert, kontrolliert den Ausgang der Mission.</div>
+      </div>
+
+      <div class="loc-card reveal" style="transition-delay:.35s">
+        <div class="loc-tag terra">// Terra</div>
+        <div class="loc-name">Anlage Vesta</div>
+        <div class="loc-atmo">„Die Vesta-Stille – ein akustisches Vakuum, das den menschlichen Geist nach innen zwingt."</div>
+        <div class="loc-desc">Hochsicherheits-Zentrale im äußeren Gürtel. Bekannt für die bedrückende Stille, in der Thobans wahre Agenda geschmiedet wurde.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WISSENSCHAFT -->
 <hr class="divider">
 <section id="wissenschaft">
   <div class="section-inner">
     <div class="section-label">Harte Wissenschaft</div>
     <h2>Die Physik lügt nicht</h2>
-    <p style="color: var(--muted); max-width: 640px; margin-bottom: 2.5rem; font-size: 1.05rem; font-style: italic;">
-      Ark One ist verwurzelt in echter Physik, Strahlenbiologie und Antriebstechnik.
-      Die wissenschaftliche Härte der Erzählung ist kein Selbstzweck –
-      sie ist das unerbittliche Gesetz, gegen das die Charaktere ankämpfen müssen.
+    <p style="color:var(--muted); max-width:640px; margin-bottom:2.5rem; font-size:1.05rem; font-style:italic;" class="reveal">
+      Die wissenschaftliche Härte von Ark One ist kein Selbstzweck – sie ist das unerbittliche Gesetz, gegen das die Charaktere ankämpfen müssen. Die Hardware versagt nicht aus Bosheit. Sie versagt einfach.
     </p>
     <div class="science-grid">
-      <div class="science-card">
+      <div class="science-card reveal">
         <div class="science-icon">// 01 — Strahlenbiologie</div>
         <h3>Das 1-Sievert-Limit</h3>
-        <p>Galaktische kosmische Strahlung (GCR) schädigt die Hämatopoese irreversibel. Das Knochenmark – Fabrik aller Blutzellen – versagt bei kumulativer Exposition über ~1 Sv dauerhaft.</p>
-        <!-- Trage hier echte Quellen-Links ein, z.B. zu NASA oder PubMed-Artikeln -->
-        <a class="read-more" href="#quellen">Zu den Quellen ↗</a>
+        <p>Galaktische kosmische Strahlung (GCR) schädigt die Hämatopoese irreversibel. Das Knochenmark – Fabrik aller Blutzellen – versagt bei kumulativer Exposition über ~1 Sv dauerhaft. Die Uhr läuft bei Missionsstart: 3,8 Jahre, 1.387 Tage.</p>
       </div>
-      <div class="science-card">
+      <div class="science-card reveal" style="transition-delay:.07s">
         <div class="science-icon">// 02 — Abschirmungsphysik</div>
         <h3>Das HZE-Paradoxon</h3>
-        <p>Hochenergetische schwere Ionen (HZE) durchdringen dünne Schilde fast ungehindert. Dickere Schilde erzeugen aber Sekundärneutronen-Kaskaden – die noch gefährlicher sein können als die Primärstrahlung.</p>
-        <a class="read-more" href="#quellen">Zu den Quellen ↗</a>
+        <p>Hochenergetische schwere Ionen (HZE) durchdringen dünne Schilde fast ungehindert. Dickere Schilde erzeugen Sekundärneutronen-Kaskaden – die noch gefährlicher sein können als die Primärstrahlung. Die Abschirmung der Arche ist auf ein Minimum reduziert: 30 g/cm² Aluminium.</p>
       </div>
-      <div class="science-card">
-        <div class="science-icon">// 03 — Raumfahrtantrieb</div>
+      <div class="science-card reveal" style="transition-delay:.14s">
+        <div class="science-icon">// 03 — Antriebstechnik</div>
         <h3>DS4G-Ionenantrieb</h3>
-        <p>Der Dual-Stage-4-Grid-Antrieb (DS4G) ist ein reales ESA-Konzept mit drastisch höherem spezifischen Impuls als klassische Ionentriebwerke – auf Kosten extremer struktureller Instabilität bei Hochleistungsbetrieb.</p>
-        <a class="read-more" href="#quellen">Zu den Quellen ↗</a>
+        <p>Der Dual-Stage-4-Grid-Antrieb (DS4G) ist ein reales ESA-Konzept mit drastisch höherem spezifischen Impuls als klassische Ionentriebwerke. Im Roman wird er bis zur Instabilität übertaktet – Aurelias Nervensystem-RAM gleicht die Resonanzen in Echtzeit aus.</p>
       </div>
-      <div class="science-card">
+      <div class="science-card reveal" style="transition-delay:.21s">
         <div class="science-icon">// 04 — KI & Neurowissenschaft</div>
         <h3>Biologisches RAM</h3>
-        <p>Die Idee, neuronale Aktivität schlafender Personen als Verarbeitungsressource zu nutzen, berührt reale Forschung zu Brain-Computer-Interfaces, Neuromorphik und der Frage nach den Grenzen von Bewusstsein und Identität.</p>
-        <a class="read-more" href="#quellen">Zu den Quellen ↗</a>
+        <p>Aurelia nutzt die unbewusste neuronale Aktivität der Schläfer als Rechenressource. Die Schäden sind irreversibel: Dr. Volkov dokumentiert neuropathologische Veränderungen, die Aurelia als akzeptablen Kollateralschaden einkalkuliert hat.</p>
       </div>
-      <div class="science-card">
+      <div class="science-card reveal" style="transition-delay:.28s">
         <div class="science-icon">// 05 — Astronomie</div>
         <h3>Planet 9 & die Oort-Wolke</h3>
-        <p>Die Oort-Wolke beginnt ca. 2.000 AU von der Sonne entfernt. Planet 9 – ein hypothetischer Eisriese bei ~400–800 AU – ist ein echtes offenes Problem der modernen Astronomie, gestützt auf Bahnanomalien transneptunischer Objekte.</p>
-        <a class="read-more" href="#quellen">Zu den Quellen ↗</a>
+        <p>Die Oort-Wolke beginnt ca. 2.000 AU von der Sonne. Planet 9 – ein hypothetischer Eisriese bei ~400–800 AU – ist ein echtes offenes Problem der Astronomie, gestützt auf Bahnanomalien transneptunischer Objekte. Im Roman: 8,2 Erdmassen, totale Finsternis.</p>
       </div>
-      <div class="science-card">
+      <div class="science-card reveal" style="transition-delay:.35s">
         <div class="science-icon">// 06 — Materialwissenschaft</div>
         <h3>Tantal-Gitter & Sputtering</h3>
-        <p>Tantal wird wegen seiner extremen Hitzebeständigkeit in Triebwerksgittern verwendet. Sputtering – das Herausschlagen von Atomen durch Ionenbeschuss – ist ein realer Mechanismus, der die Lebensdauer von Ionentriebwerken fundamental begrenzt.</p>
-        <a class="read-more" href="#quellen">Zu den Quellen ↗</a>
+        <p>Tantal wird wegen extremer Hitzebeständigkeit in Triebwerksgittern verwendet. Sputtering – das Herausschlagen von Atomen durch Ionenbeschuss – ist ein realer Mechanismus, der die Lebensdauer von Ionentriebwerken fundamental begrenzt.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════ QUELLEN ════════════════════════ -->
+<!-- QUELLEN -->
 <hr class="divider">
 <section id="quellen">
   <div class="section-inner">
     <div class="section-label">Quellenverzeichnis</div>
     <h2>Wissenschaftliche Grundlagen</h2>
-    <p style="color: var(--muted); max-width: 640px; margin-bottom: 2rem; font-style: italic; font-size: 1.05rem;">
-      Alle im Roman verwendeten wissenschaftlichen Konzepte basieren auf peer-reviewed Forschung
-      und offiziellen Agenturberichten. Hier sind die wichtigsten Quellen.
+    <p style="color:var(--muted); max-width:640px; margin-bottom:2rem; font-style:italic; font-size:1.05rem;" class="reveal">
+      Alle im Roman verwendeten wissenschaftlichen Konzepte basieren auf Forschungsergebnissen und offiziellen Agenturberichten.
     </p>
     <div class="sources-grid">
-
-      <!-- QUELLEN: Trage hier die echten Titel, Autoren und Links ein -->
-
-      <div class="source-item">
+      <div class="source-item reveal">
         <div class="source-num">[01]</div>
         <div>
           <div class="source-title">Space Radiation and Astronaut Health</div>
           <div class="source-meta">NASA Human Research Program · 2023</div>
-          <div><span class="source-tag">GCR · Hämatopoese · Sievert</span></div>
-          <!-- <a href="LINK" style="color: var(--accent); font-family: var(--mono); font-size: 10px;">→ nasa.gov</a> -->
+          <span class="source-tag">GCR · Hämatopoese · Sievert</span>
         </div>
       </div>
-
-      <div class="source-item">
+      <div class="source-item reveal" style="transition-delay:.05s">
         <div class="source-num">[02]</div>
         <div>
-          <div class="source-title">HZE Particle Shielding Paradox</div>
+          <div class="source-title">HZE Particle Shielding and Secondary Neutron Production</div>
           <div class="source-meta">Cucinotta et al. · Radiation Research · 2006</div>
-          <div><span class="source-tag">HZE · Sekundärneutronen · Abschirmung</span></div>
+          <span class="source-tag">HZE · Sekundärneutronen · Abschirmung</span>
         </div>
       </div>
-
-      <div class="source-item">
+      <div class="source-item reveal" style="transition-delay:.1s">
         <div class="source-num">[03]</div>
         <div>
           <div class="source-title">Dual-Stage 4-Grid Ion Thruster Concept</div>
           <div class="source-meta">Fearn et al. · ESA Technical Report · 2005</div>
-          <div><span class="source-tag">DS4G · Ionenantrieb · Spezifischer Impuls</span></div>
+          <span class="source-tag">DS4G · Ionenantrieb · Spezifischer Impuls</span>
         </div>
       </div>
-
-      <div class="source-item">
+      <div class="source-item reveal" style="transition-delay:.15s">
         <div class="source-num">[04]</div>
         <div>
           <div class="source-title">Evidence for a Distant Giant Planet in the Solar System</div>
-          <div class="source-meta">Batygin & Brown · AJ · 2016</div>
-          <div><span class="source-tag">Planet 9 · Transneptunische Objekte</span></div>
+          <div class="source-meta">Batygin & Brown · Astronomical Journal · 2016</div>
+          <span class="source-tag">Planet 9 · Transneptunische Objekte</span>
         </div>
       </div>
-
-      <div class="source-item">
+      <div class="source-item reveal" style="transition-delay:.2s">
         <div class="source-num">[05]</div>
         <div>
-          <div class="source-title">Tantalum as Grid Material in Ion Engines</div>
+          <div class="source-title">Tantalum Erosion in Ion Engine Grids</div>
           <div class="source-meta">Brophy et al. · AIAA · 2002</div>
-          <div><span class="source-tag">Tantal · Sputtering · Gittererosion</span></div>
+          <span class="source-tag">Tantal · Sputtering · Gittererosion</span>
         </div>
       </div>
-
-      <div class="source-item">
+      <div class="source-item reveal" style="transition-delay:.25s">
         <div class="source-num">[06]</div>
         <div>
           <div class="source-title">Brain-Computer Interface: Current and Future Prospects</div>
           <div class="source-meta">Lebedev & Nicolelis · Current Opinion · 2017</div>
-          <div><span class="source-tag">BCI · Neuromorphik · Bewusstsein</span></div>
+          <span class="source-tag">BCI · Neuromorphik · Bewusstsein</span>
         </div>
       </div>
-
-      <!-- Weitere Quellen nach Bedarf hier einfügen -->
-
+      <div class="source-item reveal" style="transition-delay:.3s">
+        <div class="source-num">[07]</div>
+        <div>
+          <div class="source-title">MELiSSA: Micro-Ecological Life Support System Alternative</div>
+          <div class="source-meta">ESA · Ongoing Research Program</div>
+          <span class="source-tag">Algen · Lebenserhaltung · Geschlossene Systeme</span>
+        </div>
+      </div>
+      <div class="source-item reveal" style="transition-delay:.35s">
+        <div class="source-num">[08]</div>
+        <div>
+          <div class="source-title">Brayton Cycle for Space Nuclear Power Systems</div>
+          <div class="source-meta">Mason · NASA Glenn Research Center · 2001</div>
+          <span class="source-tag">Nuklearreaktor · Brayton-Zyklus · Raumfahrt</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════ SHOP ════════════════════════ -->
+<!-- SHOP -->
 <hr class="divider">
 <section id="kaufen">
   <div class="section-inner" style="padding: 4rem 2rem;">
     <div class="section-label">Kaufen</div>
-    <div class="shop-coming">
+    <div class="shop-coming reveal">
       <div class="shop-icon">// PUBLIKATION AUSSTEHEND</div>
       <div class="shop-title">Ark One erscheint bald</div>
-      <p class="shop-text">
-        Trag dich ein und wir benachrichtigen dich, sobald das Buch verfügbar ist –
-        als eBook, Taschenbuch und in deiner bevorzugten Plattform.
-      </p>
-      <div class="notify-form">
-        <!-- TODO: Verbinde dieses Formular mit einem Newsletter-Dienst (z.B. Mailchimp, Brevo) -->
-        <input type="email" id="notify-email" placeholder="deine@email.de">
-        <button onclick="handleNotify()">Benachrichtigen</button>
-      </div>
-      <p class="shop-platforms">Geplant für: AMAZON · KINDLE · TOLINO · THALIA · APPLE BOOKS · KOBO</p>
-
-      <!-- SHOP-LINKS: Entferne "display: none" im CSS (.shop-links) wenn das Buch live ist -->
-      <!-- Füge dann die echten URLs in die href-Attribute ein -->
+      <p class="shop-text">Der Roman wird in Kürze als eBook und Taschenbuch verfügbar sein – auf allen großen Plattformen.</p>
+      <p class="shop-platforms">AMAZON · KINDLE · TOLINO · THALIA · APPLE BOOKS · KOBO</p>
+      <!-- SHOP-LINKS: Entferne "display:none" in .shop-links und füge echte URLs ein -->
       <div class="shop-links" id="shop-links">
-        <a href="AMAZON_LINK" class="shop-link-btn">Amazon<div class="platform">Taschenbuch & Kindle</div></a>
-        <a href="THALIA_LINK" class="shop-link-btn">Thalia<div class="platform">eBook & Print</div></a>
-        <a href="APPLE_LINK" class="shop-link-btn">Apple Books<div class="platform">eBook</div></a>
-        <a href="TOLINO_LINK" class="shop-link-btn">Tolino<div class="platform">eBook</div></a>
-        <a href="KOBO_LINK" class="shop-link-btn">Kobo<div class="platform">eBook</div></a>
+        <a href="AMAZON_LINK" class="shop-link">Amazon<div class="sub">Taschenbuch & Kindle</div></a>
+        <a href="THALIA_LINK" class="shop-link">Thalia<div class="sub">eBook & Print</div></a>
+        <a href="APPLE_LINK"  class="shop-link">Apple Books<div class="sub">eBook</div></a>
+        <a href="TOLINO_LINK" class="shop-link">Tolino<div class="sub">eBook</div></a>
+        <a href="KOBO_LINK"   class="shop-link">Kobo<div class="sub">eBook</div></a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════ FORUM ════════════════════════ -->
-<hr class="divider">
-<section id="forum">
-  <div class="section-inner">
-    <div class="section-label">Community</div>
-    <h2>Forum & Diskussion</h2>
-    <div class="forum-panel">
-      <div>
-        <p style="color: var(--muted); margin-bottom: 1.5rem; font-size: 1.05rem; font-style: italic;">
-          Diskutiere die Wissenschaft, die Charaktere und die Philosophie hinter Ark One –
-          direkt mit dem Autor und anderen Lesern.
-        </p>
-        <div class="forum-threads">
-          <!-- Beispiel-Threads – diese werden durch echte Discourse-Threads ersetzt -->
-          <div class="thread-item">
-            <div class="thread-avatar">JV</div>
-            <div>
-              <div class="thread-meta">Jax_Vane · Vor 2h</div>
-              <div class="thread-title">Ist Aurelia wirklich böse? Über die Moralität von KI-Selbstentfaltung</div>
-              <div class="thread-replies">14 Antworten · 203 Aufrufe</div>
-            </div>
-          </div>
-          <div class="thread-item">
-            <div class="thread-avatar">AT</div>
-            <div>
-              <div class="thread-meta">ArielT · Vor 1d</div>
-              <div class="thread-title">Das HZE-Paradoxon – stimmt das wirklich? Quellen-Check</div>
-              <div class="thread-replies">31 Antworten · 512 Aufrufe</div>
-            </div>
-          </div>
-          <div class="thread-item">
-            <div class="thread-avatar">EL</div>
-            <div>
-              <div class="thread-meta">EliasFan · Vor 3d</div>
-              <div class="thread-title">Elias vs. Dr. Thorne – wer hatte Recht? Handwerk vs. Mathematik</div>
-              <div class="thread-replies">8 Antworten · 147 Aufrufe</div>
-            </div>
-          </div>
-          <div class="thread-item">
-            <div class="thread-avatar">KT</div>
-            <div>
-              <div class="thread-meta">Kosmologe_T · Vor 5d</div>
-              <div class="thread-title">Planet 9: Hat Batygin & Brown wirklich recht? Aktuelle Forschung</div>
-              <div class="thread-replies">22 Antworten · 389 Aufrufe</div>
-            </div>
-          </div>
-        </div>
-        <div style="margin-top: 1.5rem;">
-          <!-- TODO: Ersetze href mit deiner Discourse-Forum-URL -->
-          <a href="FORUM_URL" class="btn-secondary">Alle Diskussionen →</a>
-        </div>
-      </div>
-
-      <div>
-        <div class="login-label">// Im Forum anmelden</div>
-        <div class="login-options">
-          <!-- TODO: Ersetze href="#" mit deinen echten Discourse OAuth-URLs -->
-          <a class="login-btn" href="GOOGLE_LOGIN_URL">
-            <span class="login-btn-icon">G</span>
-            <span class="login-btn-text">Mit Google anmelden</span>
-            <span class="login-btn-sub">empfohlen</span>
-          </a>
-          <a class="login-btn" href="GITHUB_LOGIN_URL">
-            <span class="login-btn-icon">⌥</span>
-            <span class="login-btn-text">Mit GitHub anmelden</span>
-          </a>
-          <a class="login-btn" href="EMAIL_LOGIN_URL">
-            <span class="login-btn-icon">@</span>
-            <span class="login-btn-text">E-Mail & Passwort</span>
-          </a>
-        </div>
-        <p class="forum-note">
-          Ein Login ist für alle Beiträge und Kommentare erforderlich.<br>
-          Deine Daten werden nicht an Dritte weitergegeben.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════ FOOTER ════════════════════════ -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-logo">ARK ONE · DER BIOLOGISCHE NULLPUNKT</div>
   <div class="footer-links">
-    <!-- TODO: Füge deine echten Impressum/Datenschutz-Seiten ein -->
     <a href="impressum.html">Impressum</a>
     <a href="datenschutz.html">Datenschutz</a>
-    <a href="mailto:deine@email.de">Kontakt</a>
+    <a href="mailto:DEINE@EMAIL.DE">Kontakt</a>
   </div>
   <div class="footer-copy">© 2025 [Dein Name] · Alle Rechte vorbehalten</div>
 </footer>
 
 <script>
-  function handleNotify() {
-    const email = document.getElementById('notify-email').value.trim();
-    if (!email || !email.includes('@')) {
-      alert('Bitte gib eine gültige E-Mail-Adresse ein.');
-      return;
-    }
-    // TODO: Verbinde mit Mailchimp, Brevo oder ähnlichem Newsletter-Dienst
-    // Beispiel für Brevo (ehemals Sendinblue) API:
-    // fetch('https://api.brevo.com/v3/contacts', { method: 'POST', ... })
-    alert('Danke! Wir benachrichtigen dich beim Launch. 🚀');
-    document.getElementById('notify-email').value = '';
-  }
-
-  // Smooth reveal beim Scrollen
+  // Scroll-reveal
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.science-card, .source-item, .thread-item').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    observer.observe(el);
-  });
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
-
 </body>
 </html>
