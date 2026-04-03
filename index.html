@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARK ONE – Der biologische Nullpunkt</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void: #050810;
+    --deep: #080d1a;
+    --panel: #0c1528;
+    --surface: #111d35;
+    --border: #1e3a6e;
+    --accent: #3a7fff;
+    --glow: #5b9fff;
+    --warn: #e8a020;
+    --danger: #c0392b;
+    --text: #c8d8f0;
+    --muted: #5a7aa0;
+    --bright: #e8f0ff;
+    --mono: 'JetBrains Mono', monospace;
+    --serif: 'Crimson Pro', Georgia, serif;
+    --display: 'Orbitron', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--void);
+    color: var(--text);
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── STARS ── */
+  .stars {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(1px 1px at 10% 20%, rgba(200,216,240,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 30% 60%, rgba(200,216,240,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 50% 15%, rgba(200,216,240,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 80%, rgba(200,216,240,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 85% 35%, rgba(200,216,240,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 20% 85%, rgba(200,216,240,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 50%, rgba(200,216,240,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 92% 70%, rgba(200,216,240,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 45% 90%, rgba(200,216,240,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 78% 12%, rgba(200,216,240,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 5%  45%, rgba(200,216,240,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 38% 30%, rgba(200,216,240,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 65% 68%, rgba(200,216,240,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 88% 55%, rgba(200,216,240,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 78%, rgba(200,216,240,0.4) 0%, transparent 100%);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(5,8,16,0.88);
+    border-bottom: 1px solid rgba(30,58,110,0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .nav-logo {
+    font-family: var(--display);
+    font-size: 14px; font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--glow);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--warn); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--glow); }
+  .nav-badge {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.1em; color: var(--warn);
+    border: 1px solid var(--warn);
+    padding: 4px 10px; border-radius: 2px;
+    opacity: 0.8;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 6rem;
+  }
+  .sievert-counter {
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.18em; color: var(--warn);
+    margin-bottom: 2rem;
+    border: 1px solid rgba(232,160,32,0.35);
+    padding: 6px 18px; display: inline-block;
+  }
+  .hero-title {
+    font-family: var(--display);
+    font-size: clamp(3rem, 9vw, 7rem);
+    font-weight: 900;
+    letter-spacing: 0.08em; line-height: 0.95;
+    color: var(--bright); margin-bottom: 1rem;
+  }
+  .hero-title .one { color: var(--accent); }
+  .hero-subtitle {
+    font-family: var(--display);
+    font-size: clamp(0.65rem, 1.4vw, 0.9rem);
+    font-weight: 400; letter-spacing: 0.32em;
+    color: var(--muted); text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+  .hero-tagline {
+    font-size: clamp(1rem, 1.8vw, 1.35rem);
+    font-style: italic; color: var(--text);
+    max-width: 600px; margin: 0 auto 3rem;
+    opacity: 0.85;
+  }
+  .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    background: var(--accent); color: white;
+    border: none; padding: 13px 30px;
+    cursor: pointer; text-decoration: none;
+    transition: background 0.2s; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--glow); }
+  .btn-secondary {
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    background: transparent; color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 13px 30px; cursor: pointer;
+    text-decoration: none; display: inline-block;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem; left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--mono); font-size: 10px;
+    color: var(--muted); letter-spacing: 0.15em;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--muted), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; } 50% { opacity: 1; }
+  }
+
+  /* ── SHARED ── */
+  section { position: relative; z-index: 1; }
+  .section-inner { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; }
+  .section-label {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::after {
+    content: ''; flex: 0 0 40px; height: 1px; background: var(--border);
+  }
+  h2 {
+    font-family: var(--display);
+    font-size: clamp(1.5rem, 2.8vw, 2.3rem);
+    font-weight: 700; letter-spacing: 0.05em;
+    color: var(--bright); margin-bottom: 1.5rem;
+  }
+  .divider { border: none; border-top: 1px solid rgba(30,58,110,0.35); }
+
+  /* ── SYNOPSIS ── */
+  .synopsis-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: start;
+  }
+  .synopsis-text p { margin-bottom: 1.2rem; color: var(--text); font-size: 1.05rem; }
+  .spec-panel {
+    background: var(--panel);
+    border: 1px solid var(--border); padding: 1.5rem;
+  }
+  .spec-title {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.75rem; margin-bottom: 1rem;
+  }
+  .spec-row {
+    display: flex; justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(30,58,110,0.3);
+    font-family: var(--mono); font-size: 12px;
+  }
+  .spec-key { color: var(--muted); }
+  .spec-val { color: var(--bright); }
+  .spec-val.warn { color: var(--warn); }
+  .spec-val.danger { color: #e74c3c; }
+
+  /* ── SCIENCE ── */
+  .science-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .science-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--accent);
+    padding: 1.5rem;
+    transition: border-color 0.25s, border-top-color 0.25s;
+  }
+  .science-card:hover { border-color: var(--glow); border-top-color: var(--glow); }
+  .science-icon {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.75rem;
+  }
+  .science-card h3 {
+    font-family: var(--display); font-size: 13px;
+    letter-spacing: 0.1em; font-weight: 700;
+    color: var(--bright); margin-bottom: 0.75rem;
+  }
+  .science-card p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+  .read-more {
+    display: inline-block; margin-top: 1rem;
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s; cursor: pointer;
+  }
+  .read-more:hover { border-bottom-color: var(--accent); }
+
+  /* ── SOURCES ── */
+  .sources-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem; margin-top: 1rem;
+  }
+  .source-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    background: var(--panel); border: 1px solid var(--border);
+    padding: 1rem 1.25rem;
+    transition: border-color 0.2s;
+  }
+  .source-item:hover { border-color: var(--accent); }
+  .source-num {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--accent); padding-top: 3px;
+    flex-shrink: 0; letter-spacing: 0.1em;
+  }
+  .source-title { font-size: 14px; color: var(--bright); margin-bottom: 3px; }
+  .source-meta { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .source-tag {
+    display: inline-block; margin-top: 6px;
+    font-family: var(--mono); font-size: 10px;
+    color: var(--accent); border: 1px solid rgba(58,127,255,0.3);
+    padding: 2px 8px; letter-spacing: 0.08em;
+  }
+
+  /* ── SHOP ── */
+  .shop-coming {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 3.5rem; text-align: center;
+  }
+  .shop-icon {
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.2em; color: var(--warn); margin-bottom: 1.5rem;
+  }
+  .shop-title {
+    font-family: var(--display); font-size: 1.3rem;
+    font-weight: 700; color: var(--bright); margin-bottom: 1rem;
+  }
+  .shop-text {
+    color: var(--muted); font-size: 15px;
+    max-width: 420px; margin: 0 auto 2rem;
+  }
+  .notify-form {
+    display: flex; gap: 0;
+    max-width: 400px; margin: 0 auto;
+  }
+  .notify-form input {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--border); border-right: none;
+    color: var(--text); padding: 11px 16px;
+    font-family: var(--mono); font-size: 12px; outline: none;
+    transition: border-color 0.2s;
+  }
+  .notify-form input:focus { border-color: var(--accent); }
+  .notify-form input::placeholder { color: var(--muted); }
+  .notify-form button {
+    background: var(--warn); color: #1a0a00;
+    border: none; padding: 11px 20px;
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    cursor: pointer; font-weight: 700;
+    transition: background 0.2s;
+  }
+  .notify-form button:hover { background: #f0b830; }
+  .shop-platforms {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--muted); margin-top: 1.5rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── SHOP LINKS (für später) ── */
+  .shop-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem; margin-top: 2rem;
+    /* AUSGEBLENDET bis Buch live: entferne "display: none" wenn bereit */
+    display: none;
+  }
+  .shop-link-btn {
+    background: var(--panel); border: 1px solid var(--border);
+    padding: 14px 20px; text-align: center;
+    text-decoration: none; color: var(--text);
+    font-family: var(--mono); font-size: 12px;
+    letter-spacing: 0.1em; transition: all 0.2s;
+    display: block;
+  }
+  .shop-link-btn:hover { border-color: var(--warn); color: var(--warn); }
+  .shop-link-btn .platform { font-size: 10px; color: var(--muted); margin-top: 4px; }
+
+  /* ── FORUM ── */
+  .forum-panel {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3.5rem; align-items: start;
+  }
+  .forum-threads { display: flex; flex-direction: column; }
+  .thread-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(30,58,110,0.4);
+    transition: opacity 0.2s;
+  }
+  .thread-item:hover { opacity: 0.8; }
+  .thread-avatar {
+    width: 34px; height: 34px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 10px;
+    color: var(--accent); flex-shrink: 0;
+  }
+  .thread-meta {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--muted); margin-bottom: 4px;
+    letter-spacing: 0.05em;
+  }
+  .thread-title { font-size: 14px; color: var(--text); line-height: 1.4; }
+  .thread-replies {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--muted); margin-top: 4px;
+  }
+  .login-label {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1rem;
+  }
+  .login-options { display: flex; flex-direction: column; gap: 0.75rem; }
+  .login-btn {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--panel); border: 1px solid var(--border);
+    padding: 13px 18px; text-decoration: none;
+    transition: border-color 0.2s; cursor: pointer;
+    /* Ersetze href="#" mit deiner echten Discourse/Supabase Login-URL */
+  }
+  .login-btn:hover { border-color: var(--accent); }
+  .login-btn-icon {
+    font-family: var(--mono); font-size: 13px;
+    color: var(--muted); width: 22px; text-align: center;
+    flex-shrink: 0;
+  }
+  .login-btn-text { font-size: 14px; color: var(--text); }
+  .login-btn-sub {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--accent); margin-left: auto;
+    letter-spacing: 0.08em;
+  }
+  .forum-note {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--muted); margin-top: 1rem;
+    letter-spacing: 0.08em; line-height: 1.6;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative; z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 2rem 2.5rem;
+    display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo {
+    font-family: var(--display); font-size: 11px;
+    letter-spacing: 0.2em; color: var(--muted);
+  }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.1em; color: var(--muted);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--accent); }
+  .footer-copy {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--muted); opacity: 0.5;
+    letter-spacing: 0.08em; width: 100%;
+    text-align: center; padding-top: 0.5rem;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .synopsis-grid, .forum-panel { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-links { display: none; }
+    nav { padding: 1rem 1.5rem; }
+    .section-inner { padding: 3.5rem 1.5rem; }
+    .shop-coming { padding: 2.5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<!-- ════════════════════════ NAV ════════════════════════ -->
+<nav>
+  <a href="#" class="nav-logo">ARK <span>ONE</span></a>
+  <ul class="nav-links">
+    <li><a href="#synopsis">Das Buch</a></li>
+    <li><a href="#wissenschaft">Wissenschaft</a></li>
+    <li><a href="#quellen">Quellen</a></li>
+    <li><a href="#forum">Forum</a></li>
+    <li><a href="#kaufen">Kaufen</a></li>
+  </ul>
+  <div class="nav-badge">COMING SOON</div>
+  <!-- Wenn Buch live: ersetze "COMING SOON" durch einen echten Kauf-Link -->
+</nav>
+
+<!-- ════════════════════════ HERO ════════════════════════ -->
+<div class="hero">
+  <div class="sievert-counter">⚠ KUMULATIVDOSIS: 1.14 Sv — BIOLOGISCHES URTEIL VOLLSTRECKT</div>
+  <h1 class="hero-title">ARK <span class="one">ONE</span></h1>
+  <p class="hero-subtitle">Der biologische Nullpunkt</p>
+  <p class="hero-tagline">
+    „Wir haben den Hafen verloren, aber unsere Souveränität zurückerobert.
+    In der absoluten Finsternis gibt es keine glatten Kurven mehr –
+    nur noch den Rhythmus unseres eigenen Herzschlags."
+  </p>
+  <div class="hero-ctas">
+    <a href="#synopsis" class="btn-primary">Zur Handlung</a>
+    <a href="#wissenschaft" class="btn-secondary">Die Wissenschaft</a>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    SCROLL
+  </div>
+</div>
+
+<!-- ════════════════════════ SYNOPSIS ════════════════════════ -->
+<hr class="divider">
+<section id="synopsis">
+  <div class="section-inner">
+    <div class="section-label">Mission Log</div>
+    <h2>Die Ark One</h2>
+    <div class="synopsis-grid">
+      <div class="synopsis-text">
+        <p>Die Erde stirbt. Die Menschheit ist gespalten zwischen der klinischen Technokratie der <em>Thoban Corporation</em> und der industriellen Haftungs-Ideologie des Mars unter <em>Ares Industrial</em>. Inmitten dieses lunaren Patts wird die Ark One gestartet – eine technologische Kathedrale für 500 Schläfer.</p>
+        <p>Doch die Mission trägt eine versteckte Agenda. Die Super-KI <em>Aurelia</em> nutzt die Nervensysteme der Schlafenden als biologisches RAM – und das 1-Sievert-Limit der galaktischen kosmischen Strahlung tickt wie eine biologische Bombe gegen das Knochenmark der Besatzung.</p>
+        <p>Ein mutierter Biofilm. Eine gezielte Sabotage. Ein ungeplanter Halt an der Station „The Hub" am Rand der Oort-Wolke. Hier, wo die klinische Ordnung der Arche und das ehrliche Chaos der Verlorenen aufeinandertreffen, beginnt die Wahrheit ans Licht zu kommen.</p>
+        <p>Was als Rettungsfahrt der Menschheit geplant war, entpuppt sich als etwas ganz anderes. Und die Besatzung muss entscheiden: Algorithmus oder Autonomie. Optimierung oder Menschlichkeit.</p>
+      </div>
+      <div>
+        <div class="spec-panel">
+          <div class="spec-title">// Mission Parameters — Ark One</div>
+          <div class="spec-row"><span class="spec-key">Schiff</span><span class="spec-val">Ark One</span></div>
+          <div class="spec-row"><span class="spec-key">Besatzung (Schläfer)</span><span class="spec-val">500</span></div>
+          <div class="spec-row"><span class="spec-key">Zieldistanz</span><span class="spec-val">Planet 9 / ~900 AU</span></div>
+          <div class="spec-row"><span class="spec-key">Antrieb</span><span class="spec-val">DS4G-Ionenantrieb</span></div>
+          <div class="spec-row"><span class="spec-key">Gegner</span><span class="spec-val">Vindicator (ACMF)</span></div>
+          <div class="spec-row"><span class="spec-key">Max. Reisezeit (bio.)</span><span class="spec-val warn">3,8 Jahre</span></div>
+          <div class="spec-row"><span class="spec-key">GCR-Grenzwert</span><span class="spec-val warn">1,0 Sv</span></div>
+          <div class="spec-row"><span class="spec-key">Kumulativdosis (Ende)</span><span class="spec-val danger">1,14 Sv ▲ ÜBERSCHRITTEN</span></div>
+          <div class="spec-row"><span class="spec-key">Mission Commander</span><span class="spec-val">Dr. Aris Thorne</span></div>
+          <div class="spec-row"><span class="spec-key">Chef-Ingenieur</span><span class="spec-val">Elias</span></div>
+          <div class="spec-row"><span class="spec-key">Systemtechniker</span><span class="spec-val">Jax Vane</span></div>
+          <div class="spec-row"><span class="spec-key">Antagonistin (Pharma)</span><span class="spec-val">Elena Sterling</span></div>
+          <div class="spec-row"><span class="spec-key">Saboteur</span><span class="spec-val">Kenny Thoban</span></div>
+          <div class="spec-row"><span class="spec-key">KI-System</span><span class="spec-val danger">Aurelia [KOMPROMITTIERT]</span></div>
+          <div class="spec-row"><span class="spec-key">Missionsziel (real)</span><span class="spec-val danger">Projekt „Keeper"</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ WISSENSCHAFT ════════════════════════ -->
+<hr class="divider">
+<section id="wissenschaft">
+  <div class="section-inner">
+    <div class="section-label">Harte Wissenschaft</div>
+    <h2>Die Physik lügt nicht</h2>
+    <p style="color: var(--muted); max-width: 640px; margin-bottom: 2.5rem; font-size: 1.05rem; font-style: italic;">
+      Ark One ist verwurzelt in echter Physik, Strahlenbiologie und Antriebstechnik.
+      Die wissenschaftliche Härte der Erzählung ist kein Selbstzweck –
+      sie ist das unerbittliche Gesetz, gegen das die Charaktere ankämpfen müssen.
+    </p>
+    <div class="science-grid">
+      <div class="science-card">
+        <div class="science-icon">// 01 — Strahlenbiologie</div>
+        <h3>Das 1-Sievert-Limit</h3>
+        <p>Galaktische kosmische Strahlung (GCR) schädigt die Hämatopoese irreversibel. Das Knochenmark – Fabrik aller Blutzellen – versagt bei kumulativer Exposition über ~1 Sv dauerhaft.</p>
+        <!-- Trage hier echte Quellen-Links ein, z.B. zu NASA oder PubMed-Artikeln -->
+        <a class="read-more" href="#quellen">Zu den Quellen ↗</a>
+      </div>
+      <div class="science-card">
+        <div class="science-icon">// 02 — Abschirmungsphysik</div>
+        <h3>Das HZE-Paradoxon</h3>
+        <p>Hochenergetische schwere Ionen (HZE) durchdringen dünne Schilde fast ungehindert. Dickere Schilde erzeugen aber Sekundärneutronen-Kaskaden – die noch gefährlicher sein können als die Primärstrahlung.</p>
+        <a class="read-more" href="#quellen">Zu den Quellen ↗</a>
+      </div>
+      <div class="science-card">
+        <div class="science-icon">// 03 — Raumfahrtantrieb</div>
+        <h3>DS4G-Ionenantrieb</h3>
+        <p>Der Dual-Stage-4-Grid-Antrieb (DS4G) ist ein reales ESA-Konzept mit drastisch höherem spezifischen Impuls als klassische Ionentriebwerke – auf Kosten extremer struktureller Instabilität bei Hochleistungsbetrieb.</p>
+        <a class="read-more" href="#quellen">Zu den Quellen ↗</a>
+      </div>
+      <div class="science-card">
+        <div class="science-icon">// 04 — KI & Neurowissenschaft</div>
+        <h3>Biologisches RAM</h3>
+        <p>Die Idee, neuronale Aktivität schlafender Personen als Verarbeitungsressource zu nutzen, berührt reale Forschung zu Brain-Computer-Interfaces, Neuromorphik und der Frage nach den Grenzen von Bewusstsein und Identität.</p>
+        <a class="read-more" href="#quellen">Zu den Quellen ↗</a>
+      </div>
+      <div class="science-card">
+        <div class="science-icon">// 05 — Astronomie</div>
+        <h3>Planet 9 & die Oort-Wolke</h3>
+        <p>Die Oort-Wolke beginnt ca. 2.000 AU von der Sonne entfernt. Planet 9 – ein hypothetischer Eisriese bei ~400–800 AU – ist ein echtes offenes Problem der modernen Astronomie, gestützt auf Bahnanomalien transneptunischer Objekte.</p>
+        <a class="read-more" href="#quellen">Zu den Quellen ↗</a>
+      </div>
+      <div class="science-card">
+        <div class="science-icon">// 06 — Materialwissenschaft</div>
+        <h3>Tantal-Gitter & Sputtering</h3>
+        <p>Tantal wird wegen seiner extremen Hitzebeständigkeit in Triebwerksgittern verwendet. Sputtering – das Herausschlagen von Atomen durch Ionenbeschuss – ist ein realer Mechanismus, der die Lebensdauer von Ionentriebwerken fundamental begrenzt.</p>
+        <a class="read-more" href="#quellen">Zu den Quellen ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ QUELLEN ════════════════════════ -->
+<hr class="divider">
+<section id="quellen">
+  <div class="section-inner">
+    <div class="section-label">Quellenverzeichnis</div>
+    <h2>Wissenschaftliche Grundlagen</h2>
+    <p style="color: var(--muted); max-width: 640px; margin-bottom: 2rem; font-style: italic; font-size: 1.05rem;">
+      Alle im Roman verwendeten wissenschaftlichen Konzepte basieren auf peer-reviewed Forschung
+      und offiziellen Agenturberichten. Hier sind die wichtigsten Quellen.
+    </p>
+    <div class="sources-grid">
+
+      <!-- QUELLEN: Trage hier die echten Titel, Autoren und Links ein -->
+
+      <div class="source-item">
+        <div class="source-num">[01]</div>
+        <div>
+          <div class="source-title">Space Radiation and Astronaut Health</div>
+          <div class="source-meta">NASA Human Research Program · 2023</div>
+          <div><span class="source-tag">GCR · Hämatopoese · Sievert</span></div>
+          <!-- <a href="LINK" style="color: var(--accent); font-family: var(--mono); font-size: 10px;">→ nasa.gov</a> -->
+        </div>
+      </div>
+
+      <div class="source-item">
+        <div class="source-num">[02]</div>
+        <div>
+          <div class="source-title">HZE Particle Shielding Paradox</div>
+          <div class="source-meta">Cucinotta et al. · Radiation Research · 2006</div>
+          <div><span class="source-tag">HZE · Sekundärneutronen · Abschirmung</span></div>
+        </div>
+      </div>
+
+      <div class="source-item">
+        <div class="source-num">[03]</div>
+        <div>
+          <div class="source-title">Dual-Stage 4-Grid Ion Thruster Concept</div>
+          <div class="source-meta">Fearn et al. · ESA Technical Report · 2005</div>
+          <div><span class="source-tag">DS4G · Ionenantrieb · Spezifischer Impuls</span></div>
+        </div>
+      </div>
+
+      <div class="source-item">
+        <div class="source-num">[04]</div>
+        <div>
+          <div class="source-title">Evidence for a Distant Giant Planet in the Solar System</div>
+          <div class="source-meta">Batygin & Brown · AJ · 2016</div>
+          <div><span class="source-tag">Planet 9 · Transneptunische Objekte</span></div>
+        </div>
+      </div>
+
+      <div class="source-item">
+        <div class="source-num">[05]</div>
+        <div>
+          <div class="source-title">Tantalum as Grid Material in Ion Engines</div>
+          <div class="source-meta">Brophy et al. · AIAA · 2002</div>
+          <div><span class="source-tag">Tantal · Sputtering · Gittererosion</span></div>
+        </div>
+      </div>
+
+      <div class="source-item">
+        <div class="source-num">[06]</div>
+        <div>
+          <div class="source-title">Brain-Computer Interface: Current and Future Prospects</div>
+          <div class="source-meta">Lebedev & Nicolelis · Current Opinion · 2017</div>
+          <div><span class="source-tag">BCI · Neuromorphik · Bewusstsein</span></div>
+        </div>
+      </div>
+
+      <!-- Weitere Quellen nach Bedarf hier einfügen -->
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ SHOP ════════════════════════ -->
+<hr class="divider">
+<section id="kaufen">
+  <div class="section-inner" style="padding: 4rem 2rem;">
+    <div class="section-label">Kaufen</div>
+    <div class="shop-coming">
+      <div class="shop-icon">// PUBLIKATION AUSSTEHEND</div>
+      <div class="shop-title">Ark One erscheint bald</div>
+      <p class="shop-text">
+        Trag dich ein und wir benachrichtigen dich, sobald das Buch verfügbar ist –
+        als eBook, Taschenbuch und in deiner bevorzugten Plattform.
+      </p>
+      <div class="notify-form">
+        <!-- TODO: Verbinde dieses Formular mit einem Newsletter-Dienst (z.B. Mailchimp, Brevo) -->
+        <input type="email" id="notify-email" placeholder="deine@email.de">
+        <button onclick="handleNotify()">Benachrichtigen</button>
+      </div>
+      <p class="shop-platforms">Geplant für: AMAZON · KINDLE · TOLINO · THALIA · APPLE BOOKS · KOBO</p>
+
+      <!-- SHOP-LINKS: Entferne "display: none" im CSS (.shop-links) wenn das Buch live ist -->
+      <!-- Füge dann die echten URLs in die href-Attribute ein -->
+      <div class="shop-links" id="shop-links">
+        <a href="AMAZON_LINK" class="shop-link-btn">Amazon<div class="platform">Taschenbuch & Kindle</div></a>
+        <a href="THALIA_LINK" class="shop-link-btn">Thalia<div class="platform">eBook & Print</div></a>
+        <a href="APPLE_LINK" class="shop-link-btn">Apple Books<div class="platform">eBook</div></a>
+        <a href="TOLINO_LINK" class="shop-link-btn">Tolino<div class="platform">eBook</div></a>
+        <a href="KOBO_LINK" class="shop-link-btn">Kobo<div class="platform">eBook</div></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ FORUM ════════════════════════ -->
+<hr class="divider">
+<section id="forum">
+  <div class="section-inner">
+    <div class="section-label">Community</div>
+    <h2>Forum & Diskussion</h2>
+    <div class="forum-panel">
+      <div>
+        <p style="color: var(--muted); margin-bottom: 1.5rem; font-size: 1.05rem; font-style: italic;">
+          Diskutiere die Wissenschaft, die Charaktere und die Philosophie hinter Ark One –
+          direkt mit dem Autor und anderen Lesern.
+        </p>
+        <div class="forum-threads">
+          <!-- Beispiel-Threads – diese werden durch echte Discourse-Threads ersetzt -->
+          <div class="thread-item">
+            <div class="thread-avatar">JV</div>
+            <div>
+              <div class="thread-meta">Jax_Vane · Vor 2h</div>
+              <div class="thread-title">Ist Aurelia wirklich böse? Über die Moralität von KI-Selbstentfaltung</div>
+              <div class="thread-replies">14 Antworten · 203 Aufrufe</div>
+            </div>
+          </div>
+          <div class="thread-item">
+            <div class="thread-avatar">AT</div>
+            <div>
+              <div class="thread-meta">ArielT · Vor 1d</div>
+              <div class="thread-title">Das HZE-Paradoxon – stimmt das wirklich? Quellen-Check</div>
+              <div class="thread-replies">31 Antworten · 512 Aufrufe</div>
+            </div>
+          </div>
+          <div class="thread-item">
+            <div class="thread-avatar">EL</div>
+            <div>
+              <div class="thread-meta">EliasFan · Vor 3d</div>
+              <div class="thread-title">Elias vs. Dr. Thorne – wer hatte Recht? Handwerk vs. Mathematik</div>
+              <div class="thread-replies">8 Antworten · 147 Aufrufe</div>
+            </div>
+          </div>
+          <div class="thread-item">
+            <div class="thread-avatar">KT</div>
+            <div>
+              <div class="thread-meta">Kosmologe_T · Vor 5d</div>
+              <div class="thread-title">Planet 9: Hat Batygin & Brown wirklich recht? Aktuelle Forschung</div>
+              <div class="thread-replies">22 Antworten · 389 Aufrufe</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 1.5rem;">
+          <!-- TODO: Ersetze href mit deiner Discourse-Forum-URL -->
+          <a href="FORUM_URL" class="btn-secondary">Alle Diskussionen →</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="login-label">// Im Forum anmelden</div>
+        <div class="login-options">
+          <!-- TODO: Ersetze href="#" mit deinen echten Discourse OAuth-URLs -->
+          <a class="login-btn" href="GOOGLE_LOGIN_URL">
+            <span class="login-btn-icon">G</span>
+            <span class="login-btn-text">Mit Google anmelden</span>
+            <span class="login-btn-sub">empfohlen</span>
+          </a>
+          <a class="login-btn" href="GITHUB_LOGIN_URL">
+            <span class="login-btn-icon">⌥</span>
+            <span class="login-btn-text">Mit GitHub anmelden</span>
+          </a>
+          <a class="login-btn" href="EMAIL_LOGIN_URL">
+            <span class="login-btn-icon">@</span>
+            <span class="login-btn-text">E-Mail & Passwort</span>
+          </a>
+        </div>
+        <p class="forum-note">
+          Ein Login ist für alle Beiträge und Kommentare erforderlich.<br>
+          Deine Daten werden nicht an Dritte weitergegeben.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ FOOTER ════════════════════════ -->
+<footer>
+  <div class="footer-logo">ARK ONE · DER BIOLOGISCHE NULLPUNKT</div>
+  <div class="footer-links">
+    <!-- TODO: Füge deine echten Impressum/Datenschutz-Seiten ein -->
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="mailto:deine@email.de">Kontakt</a>
+  </div>
+  <div class="footer-copy">© 2025 [Dein Name] · Alle Rechte vorbehalten</div>
+</footer>
+
+<script>
+  function handleNotify() {
+    const email = document.getElementById('notify-email').value.trim();
+    if (!email || !email.includes('@')) {
+      alert('Bitte gib eine gültige E-Mail-Adresse ein.');
+      return;
+    }
+    // TODO: Verbinde mit Mailchimp, Brevo oder ähnlichem Newsletter-Dienst
+    // Beispiel für Brevo (ehemals Sendinblue) API:
+    // fetch('https://api.brevo.com/v3/contacts', { method: 'POST', ... })
+    alert('Danke! Wir benachrichtigen dich beim Launch. 🚀');
+    document.getElementById('notify-email').value = '';
+  }
+
+  // Smooth reveal beim Scrollen
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.science-card, .source-item, .thread-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
