@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datenschutzerklärung – ARK ONE</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void: #050810; --panel: #0c1528; --surface: #111d35;
+    --border: #1e3a6e; --accent: #3a7fff; --glow: #5b9fff;
+    --warn: #e8a020; --text: #c8d8f0; --muted: #5a7aa0;
+    --bright: #e8f0ff;
+    --mono: 'JetBrains Mono', monospace;
+    --serif: 'Crimson Pro', Georgia, serif;
+    --display: 'Orbitron', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--void); color: var(--text); font-family: var(--serif); font-size: 16px; line-height: 1.8; }
+  .stars {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(1px 1px at 15% 25%, rgba(200,216,240,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 45% 65%, rgba(200,216,240,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 75% 20%, rgba(200,216,240,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 80%, rgba(200,216,240,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 30% 90%, rgba(200,216,240,0.4) 0%, transparent 100%);
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(5,8,16,0.88);
+    border-bottom: 1px solid rgba(30,58,110,0.5);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo { font-family: var(--display); font-size: 14px; font-weight: 700; letter-spacing: 0.2em; color: var(--glow); text-decoration: none; }
+  .nav-logo span { color: var(--warn); }
+  .nav-back { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-back:hover { color: var(--glow); }
+  main { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; padding: 8rem 2rem 6rem; }
+  .page-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; }
+  .page-label::after { content: ''; flex: 0 0 40px; height: 1px; background: var(--border); }
+  h1 { font-family: var(--display); font-size: clamp(1.6rem, 3.5vw, 2.5rem); font-weight: 700; letter-spacing: 0.06em; color: var(--bright); margin-bottom: 0.5rem; }
+  .legal-note { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.08em; margin-bottom: 3rem; }
+  .section { margin-bottom: 2rem; padding: 1.5rem; background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--accent); }
+  .section h2 { font-family: var(--display); font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .section h3 { font-family: var(--mono); font-size: 12px; font-weight: 400; letter-spacing: 0.1em; color: var(--bright); margin: 1.2rem 0 0.5rem; }
+  .section p { color: var(--text); margin-bottom: 0.6rem; font-size: 15px; }
+  .section p:last-child { margin-bottom: 0; }
+  .section ul { padding-left: 1.2rem; margin-bottom: 0.6rem; }
+  .section ul li { color: var(--text); font-size: 15px; margin-bottom: 0.3rem; }
+  .placeholder { color: var(--warn); font-style: italic; background: rgba(232,160,32,0.08); padding: 2px 6px; border-radius: 2px; }
+  .todo { font-family: var(--mono); font-size: 10px; color: var(--warn); letter-spacing: 0.1em; display: block; margin-top: 0.5rem; }
+  .highlight { background: rgba(58,127,255,0.08); border: 1px solid rgba(58,127,255,0.2); padding: 1rem 1.25rem; margin: 1rem 0; font-size: 14px; color: var(--text); }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 1.5rem 2.5rem; text-align: center; }
+  .footer-logo { font-family: var(--display); font-size: 11px; letter-spacing: 0.2em; color: var(--muted); }
+  .divider { border: none; border-top: 1px solid rgba(30,58,110,0.3); margin: 2rem 0; }
+  .toc { background: var(--surface); border: 1px solid var(--border); padding: 1.25rem 1.5rem; margin-bottom: 2.5rem; }
+  .toc-title { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+  .toc ol { padding-left: 1.2rem; }
+  .toc li { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-bottom: 0.25rem; }
+  .toc li a { color: var(--muted); transition: color 0.2s; }
+  .toc li a:hover { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<nav>
+  <a href="index.html" class="nav-logo">ARK <span>ONE</span></a>
+  <a href="index.html" class="nav-back">← Zurück zur Startseite</a>
+</nav>
+
+<main>
+  <div class="page-label">Legal</div>
+  <h1>Datenschutzerklärung</h1>
+  <p class="legal-note">// Gemäß DSGVO (EU) 2016/679 und BDSG</p>
+
+  <div class="toc">
+    <div class="toc-title">// Inhaltsverzeichnis</div>
+    <ol>
+      <li><a href="#verantwortlicher">Verantwortlicher</a></li>
+      <li><a href="#grundsaetze">Grundsätze der Datenverarbeitung</a></li>
+      <li><a href="#hosting">Hosting & Server-Logs (GitHub Pages)</a></li>
+      <li><a href="#kontakt">Kontaktaufnahme per E-Mail</a></li>
+      <li><a href="#newsletter">Newsletter / Launch-Benachrichtigung</a></li>
+      <li><a href="#forum">Forum & Benutzerkonten</a></li>
+      <li><a href="#cookies">Cookies</a></li>
+      <li><a href="#externe-dienste">Externe Dienste & Drittanbieter</a></li>
+      <li><a href="#rechte">Deine Rechte</a></li>
+      <li><a href="#aenderungen">Änderungen dieser Erklärung</a></li>
+    </ol>
+  </div>
+
+  <!-- 1 -->
+  <div class="section" id="verantwortlicher">
+    <h2>1. Verantwortlicher</h2>
+    <p>Verantwortlicher im Sinne der DSGVO für diese Website ist:</p>
+    <p>
+      <span class="placeholder">[Dein Vor- und Nachname]</span><br>
+      <span class="placeholder">[Straße und Hausnummer]</span><br>
+      <span class="placeholder">[PLZ und Ort]</span><br>
+      E-Mail: <a href="mailto:DEINE@EMAIL.DE"><span class="placeholder">[deine@email.de]</span></a>
+    </p>
+    <span class="todo">// TODO: Ersetze alle [Platzhalter] mit deinen echten Daten</span>
+  </div>
+
+  <!-- 2 -->
+  <div class="section" id="grundsaetze">
+    <h2>2. Grundsätze der Datenverarbeitung</h2>
+    <p>Ich nehme den Schutz deiner persönlichen Daten sehr ernst und behandle deine personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.</p>
+    <p>Personenbezogene Daten werden nur erhoben, soweit dies für die Bereitstellung eines funktionsfähigen Internetauftritts sowie unserer Inhalte und Leistungen erforderlich ist. Die Erhebung personenbezogener Daten erfolgt auf Grundlage der Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), der Vertragserfüllung (lit. b) oder des berechtigten Interesses (lit. f).</p>
+  </div>
+
+  <!-- 3 -->
+  <div class="section" id="hosting">
+    <h2>3. Hosting & Server-Logs (GitHub Pages)</h2>
+    <p>Diese Website wird über <strong style="color:var(--bright);">GitHub Pages</strong> (GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA) gehostet.</p>
+    <p>Beim Aufruf dieser Website werden durch den Hosting-Anbieter automatisch sogenannte Server-Log-Dateien erfasst. Dazu gehören:</p>
+    <ul>
+      <li>IP-Adresse des anfragenden Rechners (anonymisiert)</li>
+      <li>Datum und Uhrzeit des Zugriffs</li>
+      <li>Name und URL der abgerufenen Datei</li>
+      <li>Verwendeter Browser und Betriebssystem</li>
+      <li>Referrer-URL (die zuvor besuchte Seite)</li>
+    </ul>
+    <p>Diese Daten werden von GitHub für maximal 14 Tage gespeichert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Sicherheit und Stabilität des Betriebs).</p>
+    <p>GitHub hat sich dem EU-US Data Privacy Framework angeschlossen. Weitere Informationen: <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement</a></p>
+  </div>
+
+  <!-- 4 -->
+  <div class="section" id="kontakt">
+    <h2>4. Kontaktaufnahme per E-Mail</h2>
+    <p>Wenn du mir per E-Mail schreibst, werden die von dir übermittelten Daten (E-Mail-Adresse, Name, Nachrichteninhalt) zum Zweck der Bearbeitung deiner Anfrage gespeichert.</p>
+    <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Kommunikation).</p>
+    <p>Die Daten werden gelöscht, sobald dein Anliegen abschließend beantwortet wurde und keine gesetzlichen Aufbewahrungspflichten entgegenstehen. Du kannst der Speicherung jederzeit widersprechen.</p>
+  </div>
+
+  <!-- 5 -->
+  <div class="section" id="newsletter">
+    <h2>5. Newsletter / Launch-Benachrichtigung</h2>
+    <p>Du kannst dich für eine einmalige Launch-Benachrichtigung eintragen. Dabei wird deine E-Mail-Adresse verarbeitet.</p>
+
+    <h3>Dienst: Brevo (ehemals Sendinblue)</h3>
+    <p>Der Versand erfolgt über <strong style="color:var(--bright);">Brevo</strong> (Sendinblue GmbH, Köpenicker Str. 126, 10179 Berlin, Deutschland – EU-Unternehmen, DSGVO-konform).</p>
+    <span class="todo">// TODO: Diesen Abschnitt nur eintragen wenn du Brevo tatsächlich verwendest. Alternativ: Mailchimp, CleverReach, etc. anpassen.</span>
+
+    <p>Verarbeitete Daten: E-Mail-Adresse, Zeitpunkt der Eintragung, IP-Adresse (für Double-Opt-In-Nachweis).</p>
+    <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung).</p>
+    <p>Du kannst deine Einwilligung jederzeit widerrufen, indem du dich über den Abmeldelink in jeder E-Mail oder per direkter Anfrage abmeldest. Die bis dahin verarbeiteten Daten bleiben rechtmäßig.</p>
+    <p>Datenschutzerklärung Brevo: <a href="https://www.brevo.com/de/legal/privacypolicy/" target="_blank" rel="noopener">brevo.com/de/legal/privacypolicy</a></p>
+  </div>
+
+  <!-- 6 -->
+  <div class="section" id="forum">
+    <h2>6. Forum & Benutzerkonten</h2>
+    <p>Das Forum wird über <strong style="color:var(--bright);">Discourse</strong> betrieben. Bei Registrierung und Nutzung des Forums werden folgende Daten verarbeitet:</p>
+    <ul>
+      <li>Benutzername (frei wählbar)</li>
+      <li>E-Mail-Adresse</li>
+      <li>Passwort (verschlüsselt gespeichert)</li>
+      <li>Zeitpunkt der Registrierung und letzten Anmeldung</li>
+      <li>Verfasste Beiträge und Kommentare</li>
+      <li>IP-Adresse (für Sicherheitszwecke)</li>
+    </ul>
+    <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung durch Registrierung) und lit. b (Vertragserfüllung).</p>
+
+    <h3>Login über Drittanbieter (OAuth)</h3>
+    <p>Du kannst dich optional über <strong style="color:var(--bright);">Google</strong> oder <strong style="color:var(--bright);">GitHub</strong> anmelden. In diesem Fall überträgt der jeweilige Anbieter deinen Namen, deine E-Mail-Adresse und eine eindeutige Benutzer-ID an uns. Du wirst vor der Verbindung durch den jeweiligen Anbieter informiert und kannst ablehnen.</p>
+    <ul>
+      <li>Google: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></li>
+      <li>GitHub: <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement</a></li>
+    </ul>
+
+    <h3>Löschung des Kontos</h3>
+    <p>Du kannst die Löschung deines Accounts und aller damit verbundenen Daten jederzeit über die Forum-Einstellungen oder per E-Mail-Anfrage an mich beantragen.</p>
+
+    <span class="todo">// TODO: Wenn du Discourse auf Render.com hostest, trage hier die Server-Region ein (üblicherweise EU/Frankfurt).</span>
+  </div>
+
+  <!-- 7 -->
+  <div class="section" id="cookies">
+    <h2>7. Cookies</h2>
+    <p>Die Haupt-Website (GitHub Pages) verwendet <strong style="color:var(--bright);">keine Cookies</strong> und kein Tracking.</p>
+    <p>Das Forum (Discourse) setzt technisch notwendige Cookies für die Sitzungsverwaltung und Anmeldung. Diese Cookies sind für den Betrieb des Forums unerlässlich und werden nicht für Tracking oder Werbung verwendet.</p>
+    <div class="highlight">
+      Du kannst das Setzen von Cookies in deinen Browser-Einstellungen jederzeit deaktivieren. Beachte, dass du dich in diesem Fall möglicherweise nicht im Forum anmelden kannst.
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="section" id="externe-dienste">
+    <h2>8. Externe Dienste & Drittanbieter</h2>
+
+    <h3>Google Fonts</h3>
+    <p>Diese Website lädt Schriftarten von <strong style="color:var(--bright);">Google Fonts</strong> (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Dabei kann deine IP-Adresse an Google übertragen werden. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
+    <p>Datenschutz Google: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></p>
+    <span class="todo">// Tipp zur vollständigen DSGVO-Konformität: Du kannst Google Fonts herunterladen und lokal auf GitHub Pages hosten. Dann entfällt dieser Abschnitt.</span>
+
+    <h3>Buchshops (nach Veröffentlichung)</h3>
+    <p>Nach der Veröffentlichung des Buches enthält die Website Links zu externen Buchhandlungen (Amazon, Thalia, Apple Books, Kobo, Tolino). Diese Links führen zu externen Seiten mit eigenen Datenschutzbestimmungen. Ich habe keinen Einfluss auf deren Datenverarbeitung. Die Weitergabe deiner Daten erfolgt erst, wenn du aktiv auf einen dieser Links klickst.</p>
+  </div>
+
+  <!-- 9 -->
+  <div class="section" id="rechte">
+    <h2>9. Deine Rechte</h2>
+    <p>Du hast gemäß DSGVO folgende Rechte gegenüber mir als Verantwortlichem:</p>
+    <ul>
+      <li><strong style="color:var(--bright);">Auskunft</strong> (Art. 15 DSGVO): Welche Daten ich über dich gespeichert habe.</li>
+      <li><strong style="color:var(--bright);">Berichtigung</strong> (Art. 16 DSGVO): Korrektur unrichtiger Daten.</li>
+      <li><strong style="color:var(--bright);">Löschung</strong> (Art. 17 DSGVO): Löschung deiner Daten, sofern keine Aufbewahrungspflichten bestehen.</li>
+      <li><strong style="color:var(--bright);">Einschränkung</strong> (Art. 18 DSGVO): Einschränkung der Verarbeitung deiner Daten.</li>
+      <li><strong style="color:var(--bright);">Datenübertragbarkeit</strong> (Art. 20 DSGVO): Übermittlung deiner Daten in maschinenlesbarem Format.</li>
+      <li><strong style="color:var(--bright);">Widerspruch</strong> (Art. 21 DSGVO): Widerspruch gegen die Verarbeitung auf Basis berechtigter Interessen.</li>
+      <li><strong style="color:var(--bright);">Widerruf</strong> (Art. 7 Abs. 3 DSGVO): Widerruf erteilter Einwilligungen für die Zukunft.</li>
+    </ul>
+    <p>Zur Ausübung dieser Rechte wende dich per E-Mail an: <a href="mailto:DEINE@EMAIL.DE"><span class="placeholder">[deine@email.de]</span></a></p>
+
+    <h3>Beschwerderecht</h3>
+    <p>Du hast das Recht, dich bei einer Datenschutz-Aufsichtsbehörde zu beschweren. Die für dich zuständige Behörde richtet sich nach deinem Wohnort. Eine Liste aller deutschen Aufsichtsbehörden findet sich beim <a href="https://www.bfdi.bund.de/DE/Service/Anschriften/Laender/Laender-node.html" target="_blank" rel="noopener">Bundesbeauftragten für den Datenschutz (BfDI)</a>.</p>
+  </div>
+
+  <!-- 10 -->
+  <div class="section" id="aenderungen">
+    <h2>10. Änderungen dieser Erklärung</h2>
+    <p>Ich behalte mir vor, diese Datenschutzerklärung anzupassen, wenn sich technische Gegebenheiten oder rechtliche Anforderungen ändern. Die aktuelle Version ist stets auf dieser Seite abrufbar. Bei wesentlichen Änderungen, die dich betreffen, werde ich dich gesondert informieren.</p>
+  </div>
+
+  <hr class="divider">
+  <p style="font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.08em;">
+    Stand: <span class="placeholder">[Datum eintragen]</span>
+  </p>
+</main>
+
+<footer>
+  <div class="footer-logo">ARK ONE · DER BIOLOGISCHE NULLPUNKT</div>
+</footer>
+</body>
+</html>
