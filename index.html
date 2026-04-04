@@ -212,7 +212,63 @@
   .footer-links a:hover { color: var(--accent); }
   .footer-copy { font-family: var(--mono); font-size: 10px; color: var(--muted); opacity: 0.45; letter-spacing: 0.06em; width: 100%; text-align: center; }
 
+  /* INFOGRAPHICS */
+  .infographic {
+    margin: 2.5rem 0;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .infographic:hover { border-color: rgba(58,127,255,0.4); }
+  .infographic img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .infographic-caption {
+    padding: 1rem 1.25rem;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    text-transform: uppercase;
+  }
+  .infographic-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 2.5rem 0;
+  }
+  .infographic-row .infographic { margin: 0; }
+
+  /* Lightbox */
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(5,8,16,0.92);
+    z-index: 9999;
+    cursor: zoom-out;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+  .lightbox-overlay.active { display: flex; }
+  .lightbox-overlay img {
+    max-width: 95vw;
+    max-height: 92vh;
+    object-fit: contain;
+    border: 1px solid var(--border);
+    box-shadow: 0 0 60px rgba(58,127,255,0.15);
+  }
+  .infographic img { cursor: zoom-in; }
+
   @media (max-width: 768px) {
+    .infographic-row { grid-template-columns: 1fr; }
     .synopsis-grid { grid-template-columns: 1fr; gap: 2rem; }
     .map-stop { grid-template-columns: 80px 1px 1fr; gap: 0 1rem; }
     .map-coord { font-size: 9px; }
@@ -289,6 +345,12 @@
         </div>
       </div>
     </div>
+
+    <div class="infographic reveal" style="transition-delay:.2s">
+      <img src="Ark_One_Dossier_zur_interstellaren_Kolonisierung.png" alt="Ark One – Ein technisches Dossier zur interstellaren Kolonisierung" loading="lazy" onclick="openLightbox(this.src)">
+      <div class="infographic-caption">// Technisches Dossier — Ark One · Interstellare Kolonisierung</div>
+    </div>
+
   </div>
 </section>
 
@@ -416,6 +478,18 @@
         </div>
       </div>
     </div>
+
+    <div class="infographic-row reveal" style="transition-delay:.35s">
+      <div class="infographic">
+        <img src="Ark_One_Fleisch_und_Silizium.png" alt="Ark One – Ein Geflecht aus Fleisch und Silizium" loading="lazy" onclick="openLightbox(this.src)">
+        <div class="infographic-caption">// Fleisch und Silizium — Figurenkonstellation</div>
+      </div>
+      <div class="infographic">
+        <img src="Ark_One_Beziehungsgeflecht.png" alt="Ark One – Das Beziehungsgeflecht am biologischen Nullpunkt" loading="lazy" onclick="openLightbox(this.src)">
+        <div class="infographic-caption">// Beziehungsgeflecht — Machtstrukturen & Ideologien</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -495,6 +569,12 @@
       </div>
 
     </div>
+
+    <div class="infographic reveal" style="transition-delay:.1s">
+      <img src="Ark_One_Überlebenskampf_auf_dem_Mars.png" alt="Mission Mars – Der Wettlauf gegen das 1-Sievert-Urteil" loading="lazy" onclick="openLightbox(this.src)">
+      <div class="infographic-caption">// Mission Mars — Der Wettlauf gegen das 1-Sievert-Urteil</div>
+    </div>
+
   </div>
 </section>
 
@@ -607,6 +687,23 @@
         <p>Tantal wird wegen extremer Hitzebeständigkeit in Triebwerksgittern verwendet. Sputtering – das Herausschlagen von Atomen durch Ionenbeschuss – ist ein realer Mechanismus, der die Lebensdauer von Ionentriebwerken fundamental begrenzt.</p>
       </div>
     </div>
+
+    <div class="infographic reveal" style="transition-delay:.4s">
+      <img src="Ark_One_Technik_und_Gefahren.png" alt="Ark One – Die letzte Hoffnung und ihr düsterer Preis" loading="lazy" onclick="openLightbox(this.src)">
+      <div class="infographic-caption">// Technische Spezifikationen — Die letzte Hoffnung und ihr düsterer Preis</div>
+    </div>
+
+    <div class="infographic-row reveal" style="transition-delay:.5s">
+      <div class="infographic">
+        <img src="Ark_One_DS4GIonenantrieb.png" alt="DS4G-Ionenantrieb der Ark One – Missions-Spezifikationen vs. Overclocking-Limit" loading="lazy" onclick="openLightbox(this.src)">
+        <div class="infographic-caption">// DS4G-Ionenantrieb — Spezifikation vs. Overclocking</div>
+      </div>
+      <div class="infographic">
+        <img src="Ark_One_Strahlenschutz_für_die_Mars_Mission.png" alt="Strahlenschutz für die Mars-Mission – Der Weg zum bemannten Deep-Space-Flug" loading="lazy" onclick="openLightbox(this.src)">
+        <div class="infographic-caption">// Strahlenschutz — Deep-Space-Abschirmung</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -860,12 +957,29 @@
   <div class="footer-copy">© 2025 Jens Kuske · Alle Rechte vorbehalten</div>
 </footer>
 
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="Vergrößerte Ansicht">
+</div>
+
 <script>
   // Scroll-reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Lightbox
+  function openLightbox(src) {
+    const lb = document.getElementById('lightbox');
+    document.getElementById('lightbox-img').src = src;
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 </script>
 </body>
 </html>
