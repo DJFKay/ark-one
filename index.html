@@ -214,7 +214,8 @@
 
   /* INFOGRAPHICS */
   .infographic {
-    margin: 2.5rem 0;
+    margin: 2.5rem auto;
+    max-width: 600px;
     border: 1px solid var(--border);
     background: var(--panel);
     overflow: hidden;
@@ -227,21 +228,41 @@
     display: block;
   }
   .infographic-caption {
-    padding: 1rem 1.25rem;
+    padding: 0.75rem 1rem;
     font-family: var(--mono);
     font-size: 10px;
     letter-spacing: 0.12em;
     color: var(--muted);
     border-top: 1px solid var(--border);
     text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .infographic-caption::after {
+    content: '⤢ Vergrößern';
+    color: var(--accent);
+    font-size: 9px;
+    opacity: 0.7;
+  }
+  .infographic-credit {
+    padding: 0 1rem 0.75rem;
+    font-family: var(--serif);
+    font-size: 11px;
+    font-style: italic;
+    color: var(--muted);
+    opacity: 0.7;
   }
   .infographic-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
+    gap: 1.25rem;
     margin: 2.5rem 0;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
   }
-  .infographic-row .infographic { margin: 0; }
+  .infographic-row .infographic { margin: 0; max-width: none; }
 
   /* Lightbox */
   .lightbox-overlay {
@@ -268,7 +289,10 @@
   .infographic img { cursor: zoom-in; }
 
   @media (max-width: 768px) {
-    .infographic-row { grid-template-columns: 1fr; }
+    .infographic { max-width: 100%; margin: 1.5rem 0; }
+    .infographic img { max-height: 400px; object-fit: contain; background: var(--deep); }
+    .infographic-row { grid-template-columns: 1fr; gap: 1rem; }
+    .infographic-row .infographic img { max-height: 350px; }
     .synopsis-grid { grid-template-columns: 1fr; gap: 2rem; }
     .map-stop { grid-template-columns: 80px 1px 1fr; gap: 0 1rem; }
     .map-coord { font-size: 9px; }
@@ -349,6 +373,7 @@
     <div class="infographic reveal" style="transition-delay:.2s">
       <img src="ark-one-dossier-interstellare-kolonisierung.png" alt="Ark One – Ein technisches Dossier zur interstellaren Kolonisierung" loading="lazy" onclick="openLightbox(this.src)">
       <div class="infographic-caption">// Technisches Dossier — Ark One · Interstellare Kolonisierung</div>
+      <div class="infographic-credit">Visualisierungen erstellt mit Google NotebookLM auf Basis der Originalentwürfe von J. F. Kay.</div>
     </div>
 
   </div>
@@ -483,10 +508,12 @@
       <div class="infographic">
         <img src="ark-one-fleisch-und-silizium.png" alt="Ark One – Ein Geflecht aus Fleisch und Silizium" loading="lazy" onclick="openLightbox(this.src)">
         <div class="infographic-caption">// Fleisch und Silizium — Figurenkonstellation</div>
+        <div class="infographic-credit">Visualisierungen erstellt mit Google NotebookLM auf Basis der Originalentwürfe von J. F. Kay.</div>
       </div>
       <div class="infographic">
         <img src="ark-one-beziehungsgeflecht.png" alt="Ark One – Das Beziehungsgeflecht am biologischen Nullpunkt" loading="lazy" onclick="openLightbox(this.src)">
         <div class="infographic-caption">// Beziehungsgeflecht — Machtstrukturen & Ideologien</div>
+        <div class="infographic-credit">Visualisierungen erstellt mit Google NotebookLM auf Basis der Originalentwürfe von J. F. Kay.</div>
       </div>
     </div>
 
@@ -573,6 +600,7 @@
     <div class="infographic reveal" style="transition-delay:.1s">
       <img src="ark-one-ueberlebenskampf-mars.png" alt="Mission Mars – Der Wettlauf gegen das 1-Sievert-Urteil" loading="lazy" onclick="openLightbox(this.src)">
       <div class="infographic-caption">// Mission Mars — Der Wettlauf gegen das 1-Sievert-Urteil</div>
+      <div class="infographic-credit">Visualisierungen erstellt mit Google NotebookLM auf Basis der Originalentwürfe von J. F. Kay.</div>
     </div>
 
   </div>
@@ -691,16 +719,19 @@
     <div class="infographic reveal" style="transition-delay:.4s">
       <img src="ark-one-technik-und-gefahren.png" alt="Ark One – Die letzte Hoffnung und ihr düsterer Preis" loading="lazy" onclick="openLightbox(this.src)">
       <div class="infographic-caption">// Technische Spezifikationen — Die letzte Hoffnung und ihr düsterer Preis</div>
+      <div class="infographic-credit">Visualisierungen erstellt mit Google NotebookLM auf Basis der Originalentwürfe von J. F. Kay.</div>
     </div>
 
     <div class="infographic-row reveal" style="transition-delay:.5s">
       <div class="infographic">
         <img src="ark-one-ds4g-ionenantrieb.png" alt="DS4G-Ionenantrieb der Ark One – Missions-Spezifikationen vs. Overclocking-Limit" loading="lazy" onclick="openLightbox(this.src)">
         <div class="infographic-caption">// DS4G-Ionenantrieb — Spezifikation vs. Overclocking</div>
+        <div class="infographic-credit">Visualisierungen erstellt mit Google NotebookLM auf Basis der Originalentwürfe von J. F. Kay.</div>
       </div>
       <div class="infographic">
         <img src="ark-one-strahlenschutz-mars-mission.png" alt="Strahlenschutz für die Mars-Mission – Der Weg zum bemannten Deep-Space-Flug" loading="lazy" onclick="openLightbox(this.src)">
         <div class="infographic-caption">// Strahlenschutz — Deep-Space-Abschirmung</div>
+        <div class="infographic-credit">Visualisierungen erstellt mit Google NotebookLM auf Basis der Originalentwürfe von J. F. Kay.</div>
       </div>
     </div>
 
