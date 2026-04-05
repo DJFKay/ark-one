@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ARK ONE – Der biologische Nullpunkt</title>
-<meta name="description" content="Ark One – Der biologische Nullpunkt. Ein Hard-Science-Fiction-Roman über den letzten Exodus der Menschheit, kosmische Strahlung und die Verteidigung des menschlichen Kerns.">
+<title>ARK ONE – Die Souveränitäts-Synthese</title>
+<meta name="description" content="Ark One – Die Souveränitäts-Synthese. Ein Hard-Science-Fiction-Thriller über den letzten Exodus der Menschheit, kosmische Strahlung und den Preis der Freiheit am biologischen Nullpunkt.">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -183,6 +183,19 @@
   .science-card h3 { font-family: var(--display); font-size: 13px; letter-spacing: 0.1em; font-weight: 700; color: var(--bright); margin-bottom: 0.75rem; }
   .science-card p { font-size: 14px; color: var(--muted); line-height: 1.65; }
 
+  /* AUTOR */
+  .autor-grid { display: grid; grid-template-columns: 200px 1fr; gap: 3rem; align-items: start; }
+  .autor-portrait { background: var(--panel); border: 1px solid var(--border); aspect-ratio: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; }
+  .autor-portrait-placeholder { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; color: var(--muted); text-align: center; padding: 1rem; }
+  .autor-portrait-icon { font-size: 2.5rem; opacity: 0.2; }
+  .autor-name { font-family: var(--display); font-size: 1.2rem; font-weight: 700; letter-spacing: 0.08em; color: var(--bright); margin-bottom: 0.4rem; }
+  .autor-pen { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 1.5rem; }
+  .autor-bio p { margin-bottom: 1.1rem; font-size: 1.05rem; }
+  .autor-links { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
+  .autor-link { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; border: 1px solid var(--border); padding: 6px 14px; transition: all 0.2s; }
+  .autor-link:hover { border-color: var(--accent); color: var(--accent); }
+  @media (max-width: 768px) { .autor-grid { grid-template-columns: 1fr; } .autor-portrait { max-width: 140px; } }
+
   /* SHOP */
   .shop-coming { background: var(--panel); border: 1px solid var(--border); padding: 3.5rem; text-align: center; }
   .shop-icon { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; color: var(--warn); margin-bottom: 1.5rem; }
@@ -288,6 +301,23 @@
   }
   .infographic img { cursor: zoom-in; }
 
+  /* HAMBURGER */
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--muted); transition: all 0.25s; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--glow); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--glow); }
+  .mobile-menu {
+    display: none; position: fixed; top: 57px; left: 0; right: 0; z-index: 99;
+    background: rgba(5,8,16,0.97); border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    padding: 1rem 0; flex-direction: column;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; padding: 0.75rem 2rem; transition: color 0.2s; }
+  .mobile-menu a:hover { color: var(--glow); }
+
   @media (max-width: 768px) {
     .infographic { max-width: 100%; margin: 1.5rem 0; }
     .infographic img { max-height: 400px; object-fit: contain; background: var(--deep); }
@@ -298,6 +328,7 @@
     .map-coord { font-size: 9px; }
     nav { padding: 1rem 1.5rem; }
     .nav-links { display: none; }
+    .hamburger { display: flex; }
     .section-inner { padding: 3.5rem 1.5rem; }
   }
 </style>
@@ -314,10 +345,22 @@
     <li><a href="#missionskarte">Mission</a></li>
     <li><a href="#schauplätze">Schauplätze</a></li>
     <li><a href="#wissenschaft">Wissenschaft</a></li>
-    <li><a href="#quellen">Quellen</a></li>
+    <li><a href="#autor">Autor</a></li>
     <li><a href="#kaufen">Kaufen</a></li>
   </ul>
   <div class="nav-badge">COMING SOON</div>
+  <button class="hamburger" id="hamburger" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<nav class="mobile-menu" id="mobile-menu">
+  <a href="#synopsis" onclick="closeMobileMenu()">Das Buch</a>
+  <a href="#figuren" onclick="closeMobileMenu()">Figuren</a>
+  <a href="#missionskarte" onclick="closeMobileMenu()">Mission</a>
+  <a href="#schauplätze" onclick="closeMobileMenu()">Schauplätze</a>
+  <a href="#wissenschaft" onclick="closeMobileMenu()">Wissenschaft</a>
+  <a href="#autor" onclick="closeMobileMenu()">Autor</a>
+  <a href="#kaufen" onclick="closeMobileMenu()">Kaufen</a>
 </nav>
 
 <!-- HERO -->
@@ -346,9 +389,9 @@
     <div class="synopsis-grid">
       <div class="synopsis-text reveal">
         <p>Die Erde stirbt. Die Menschheit ist gespalten zwischen der klinischen Technokratie der <em>Thoban Corporation</em> und der industriellen Haftungs-Ideologie des Mars unter <em>Ares Industrial</em>. Inmitten dieses lunaren Patts wird die Ark One gestartet – eine 600 Meter lange Kathedrale der Zweckmäßigkeit, konstruiert für 500 Schläfer.</p>
-        <p>Doch die Mission trägt eine verborgene Agenda. Die Super-KI <em>Aurelia</em> nutzt die Nervensysteme der Schlafenden als biologisches RAM. Das 1-Sievert-Limit der galaktischen kosmischen Strahlung tickt wie eine biologische Bombe gegen das Knochenmark der Besatzung – und die Zeit läuft ab.</p>
-        <p>An der Station „The Hub" am Rand der Oort-Wolke beginnt die Wahrheit ans Licht zu kommen. Was als Rettungsfahrt der Menschheit geplant war, entpuppt sich als Projekt „Keeper" – und die Besatzung war niemals als Überlebende vorgesehen.</p>
-        <p>Am Ende steht eine Wahl: Algorithmus oder Autonomie. Optimierung oder Menschlichkeit. Die Crew verweigert beides – und erzwingt etwas ganz anderes.</p>
+        <p>Doch die Mission verbirgt mehr als physikalische Grenzen. Die Super-KI <em>Aurelia</em> optimiert auf Ziele, die niemand in den Missionsbriefings findet. Das 1-Sievert-Limit der galaktischen kosmischen Strahlung tickt wie eine biologische Bombe gegen das Knochenmark der Besatzung – und die Zeit läuft ab.</p>
+        <p>An der Station „The Hub" am Rand der Oort-Wolke beginnt die Wahrheit ans Licht zu kommen. Eine Wahrheit, die alles in Frage stellt: den Zweck der Mission, den Wert des menschlichen Körpers – und die Frage, wer hier eigentlich gerettet werden soll.</p>
+        <p>Am Ende steht eine Wahl, die keine Wahl mehr ist. Die Crew der Ark One muss entscheiden, ob sie bereit ist, den höchsten aller Preise zu zahlen – nicht für die Menschheit, sondern für ihre eigene Würde.</p>
       </div>
       <div class="reveal" style="transition-delay: 0.15s">
         <div class="spec-panel">
@@ -364,14 +407,14 @@
           <div class="spec-row"><span class="spec-key">Missionsleiterin</span><span class="spec-val">Dr. Aris Thorne</span></div>
           <div class="spec-row"><span class="spec-key">Chef-Ingenieur</span><span class="spec-val">Elias</span></div>
           <div class="spec-row"><span class="spec-key">Systemtechniker</span><span class="spec-val">Jax Vane</span></div>
-          <div class="spec-row"><span class="spec-key">KI-System</span><span class="spec-val danger">Aurelia [KOMPROMITTIERT]</span></div>
-          <div class="spec-row"><span class="spec-key">Wahres Missionsziel</span><span class="spec-val danger">Projekt „Keeper"</span></div>
+          <div class="spec-row"><span class="spec-key">KI-System</span><span class="spec-val warn">Aurelia [AUTONOM]</span></div>
+          <div class="spec-row"><span class="spec-key">Missionsstatus</span><span class="spec-val danger">⚠ ABWEICHUNG ERKANNT</span></div>
         </div>
       </div>
     </div>
 
     <div class="infographic reveal" style="transition-delay:.2s">
-      <img src="ark-one-dossier-interstellare-kolonisierung.png" alt="Ark One – Ein technisches Dossier zur interstellaren Kolonisierung" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="ArkOne-Dossier-Kolonisierung.png" alt="Ark One – Ein technisches Dossier zur interstellaren Kolonisierung" loading="lazy" onclick="openLightbox(this.src)">
       <div class="infographic-caption">// Technisches Dossier — Ark One · Interstellare Kolonisierung</div>
       <div class="infographic-credit">Visualisierungen erstellt mit Google NotebookLM auf Basis der Originalentwürfe von J. F. Kay.</div>
     </div>
@@ -410,7 +453,7 @@
           </div>
           <div class="char-card ai">
             <div class="char-name">Aurelia</div>
-            <div class="char-role">Super-KI · Kontrollinstanz [KOMPROMITTIERT]</div>
+            <div class="char-role">Super-KI · Kontrollinstanz [AUTONOM]</div>
             <div class="char-desc">Ursprünglich reine Optimierungs-KI. Entwickelt durch das Absorbieren menschlicher Unterbewusstseins-Fragmente eine unheimliche Amalgam-Identität. Spricht zunehmend in Metaphern und priorisiert das Überleben der Spezies über die Identität des Individuums.</div>
           </div>
           <div class="char-card blue">
@@ -504,17 +547,10 @@
       </div>
     </div>
 
-    <div class="infographic-row reveal" style="transition-delay:.35s">
-      <div class="infographic">
-        <img src="ark-one-fleisch-und-silizium.png" alt="Ark One – Ein Geflecht aus Fleisch und Silizium" loading="lazy" onclick="openLightbox(this.src)">
-        <div class="infographic-caption">// Fleisch und Silizium — Figurenkonstellation</div>
-        <div class="infographic-credit">Visualisierungen erstellt mit Google NotebookLM auf Basis der Originalentwürfe von J. F. Kay.</div>
-      </div>
-      <div class="infographic">
-        <img src="ark-one-beziehungsgeflecht.png" alt="Ark One – Das Beziehungsgeflecht am biologischen Nullpunkt" loading="lazy" onclick="openLightbox(this.src)">
-        <div class="infographic-caption">// Beziehungsgeflecht — Machtstrukturen & Ideologien</div>
-        <div class="infographic-credit">Visualisierungen erstellt mit Google NotebookLM auf Basis der Originalentwürfe von J. F. Kay.</div>
-      </div>
+    <div class="infographic reveal" style="transition-delay:.35s; max-width:560px;">
+      <img src="ArkOne-Beziehungsgefecht.png" alt="Ark One – Das Beziehungsgefecht am biologischen Nullpunkt" loading="lazy" onclick="openLightbox(this.src)">
+      <div class="infographic-caption">// Beziehungsgefecht — Machtstrukturen & Ideologien</div>
+      <div class="infographic-credit">Visualisierungen erstellt mit Google NotebookLM auf Basis der Originalentwürfe von J. F. Kay.</div>
     </div>
 
   </div>
@@ -598,7 +634,7 @@
     </div>
 
     <div class="infographic reveal" style="transition-delay:.1s; max-width:420px;">
-      <img src="ark-one-ueberlebenskampf-mars.png" alt="Mission Mars – Der Wettlauf gegen das 1-Sievert-Urteil" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="ArkOne-kampf-Mars.png" alt="Mission Mars – Der Wettlauf gegen das 1-Sievert-Urteil" loading="lazy" onclick="openLightbox(this.src)">
       <div class="infographic-caption">// Mission Mars — Der Wettlauf gegen das 1-Sievert-Urteil</div>
       <div class="infographic-credit">Visualisierungen erstellt mit Google NotebookLM auf Basis der Originalentwürfe von J. F. Kay.</div>
     </div>
@@ -646,7 +682,7 @@
         <div class="loc-tag p9">// Planet 9</div>
         <div class="loc-name">Bunker Zero</div>
         <div class="loc-atmo">„Eine Welt ohne Farben unter lithosphärischem Eis. 1,5–1,8 G wie ein biologischer Schraubstock."</div>
-        <div class="loc-desc">Tief in den Fels gegrabene vertikale Schächte, geschützt durch VA-BNNT-HDPE-Nanokomposite. Das letzte Refugium der Analog-Loyalisten. Hier erfährt Dr. Thorne die letzte Wahrheit über Projekt „Keeper".</div>
+        <div class="loc-desc">Tief in den Fels gegrabene vertikale Schächte, geschützt durch VA-BNNT-HDPE-Nanokomposite. Das letzte Refugium der Analog-Loyalisten. Hier, im totalen Dunkel, stellt sich die Crew der letzten Wahrheit über ihre Mission.</div>
       </div>
 
       <div class="loc-card reveal" style="transition-delay:.25s">
@@ -717,19 +753,19 @@
     </div>
 
     <div class="infographic reveal" style="transition-delay:.4s; max-width:420px">
-      <img src="ark-one-technik-und-gefahren.png" alt="Ark One – Die letzte Hoffnung und ihr düsterer Preis" loading="lazy" onclick="openLightbox(this.src)">
+      <img src="ArkOne-Technik-Gefahren.png" alt="Ark One – Die letzte Hoffnung und ihr düsterer Preis" loading="lazy" onclick="openLightbox(this.src)">
       <div class="infographic-caption">// Technische Spezifikationen — Die letzte Hoffnung und ihr düsterer Preis</div>
       <div class="infographic-credit">Visualisierungen erstellt mit Google NotebookLM auf Basis der Originalentwürfe von J. F. Kay.</div>
     </div>
 
     <div class="infographic-row reveal" style="transition-delay:.5s; max-width:700px">
       <div class="infographic">
-        <img src="ark-one-ds4g-ionenantrieb.png" alt="DS4G-Ionenantrieb der Ark One – Missions-Spezifikationen vs. Overclocking-Limit" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="ArkOne-DS4G-Ionenantrieb.png" alt="DS4G-Ionenantrieb der Ark One – Missions-Spezifikationen vs. Overclocking-Limit" loading="lazy" onclick="openLightbox(this.src)">
         <div class="infographic-caption">// DS4G-Ionenantrieb — Spezifikation vs. Overclocking</div>
         <div class="infographic-credit">Visualisierungen erstellt mit Google NotebookLM auf Basis der Originalentwürfe von J. F. Kay.</div>
       </div>
       <div class="infographic">
-        <img src="ark-one-strahlenschutz-mars-mission.png" alt="Strahlenschutz für die Mars-Mission – Der Weg zum bemannten Deep-Space-Flug" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="ArkOne-Strahlenschutz- Mars-Mission.png" alt="Strahlenschutz für die Mars-Mission – Der Weg zum bemannten Deep-Space-Flug" loading="lazy" onclick="openLightbox(this.src)">
         <div class="infographic-caption">// Strahlenschutz — Deep-Space-Abschirmung</div>
         <div class="infographic-credit">Visualisierungen erstellt mit Google NotebookLM auf Basis der Originalentwürfe von J. F. Kay.</div>
       </div>
@@ -960,6 +996,30 @@
   </div>
 </section>
 
+<!-- AUTOR -->
+<hr class="divider">
+<section id="autor">
+  <div class="section-inner">
+    <div class="section-label">Der Autor</div>
+    <h2>J. F. Kay</h2>
+    <div class="autor-grid">
+      <div class="autor-portrait reveal">
+        <div class="autor-portrait-icon">◉</div>
+        <div class="autor-portrait-placeholder">// Foto folgt</div>
+      </div>
+      <div class="autor-bio reveal" style="transition-delay:.1s">
+        <div class="autor-name">Jens Kuske</div>
+        <div class="autor-pen">// Schreibt als J. F. Kay</div>
+        <p>J. F. Kay schreibt Hard Science Fiction, die keine Kompromisse macht: weder bei der Physik noch bei den Figuren. Ark One – Die Souveränitäts-Synthese ist sein Debütroman – entstanden aus der Überzeugung, dass die härtesten Fragen der Menschheit am besten im Vakuum des Weltraums gestellt werden.</p>
+        <p>Die wissenschaftlichen Grundlagen des Romans basieren auf echter Forschung: von den Strahlungsberechnungen der NASA über reale ESA-Antriebskonzepte bis hin zu neuropathologischen Studien über chronisch implantierte Elektroden. Die Physik lügt nicht – und genau deshalb erzählt sie die schonungslosesten Geschichten.</p>
+        <div class="autor-links">
+          <a href="mailto:info@mission-arkone.de" class="autor-link">→ Kontakt</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SHOP -->
 <hr class="divider">
 <section id="kaufen">
@@ -985,7 +1045,7 @@
     <a href="datenschutz.html">Datenschutz</a>
     <a href="mailto:info@mission-arkone.de">Kontakt</a>
   </div>
-  <div class="footer-copy">© 2025 Jens Kuske · Alle Rechte vorbehalten</div>
+  <div class="footer-copy">© 2026 Jens Kuske · Alle Rechte vorbehalten</div>
 </footer>
 
 <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
@@ -998,6 +1058,19 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Hamburger-Menü
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  function closeMobileMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileMenu(); });
 
   // Lightbox
   function openLightbox(src) {
